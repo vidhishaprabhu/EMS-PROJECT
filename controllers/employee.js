@@ -33,7 +33,7 @@ exports.createEmployee = async (req, res) => {
     return res.status(500).json({ message: "Internal server error" });
   }
 };
-exports.login = async (req, res) => {
+exports.loginEmployee = async (req, res) => {
   try {
     const { email, password} = req.body;
     const existingEmp = await Employee.findOne({ email });
