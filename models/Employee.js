@@ -27,7 +27,6 @@ const employeeSchema = mongoose.Schema(
     role: {
       type: String,
       default: "employee",
-      required:true
     },
     image: {
       type: String,
