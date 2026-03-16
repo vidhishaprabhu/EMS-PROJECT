@@ -43,6 +43,9 @@ exports.createEmployee = async (req, res) => {
 exports.getEmployee = async (req, res) => {
   try {
     const employee = await Employee.find();
+    if(!employee){
+      return res.status(404).json({message:'No Employee data found'})
+    }
     return res.status(200).json({ employee: employee });
   } catch (error) {
     return res.status(500).json({ message: "Internal server error" });

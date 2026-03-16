@@ -2,7 +2,8 @@ const mongoose=require('mongoose');
 const leaveSchema=mongoose.Schema({
   employee:{
     type:mongoose.Schema.Types.ObjectId,
-    ref:"Employee"
+    ref:"Employee",
+    required:true
   },
   fromDate:{
     type:Date,
@@ -19,7 +20,6 @@ const leaveSchema=mongoose.Schema({
   status:{
     type:String,
     default:"Pending",
-    required:true
   }
 })
 const Leave=mongoose.model("Leave",leaveSchema);

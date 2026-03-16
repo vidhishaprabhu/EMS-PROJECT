@@ -11,7 +11,7 @@ exports.createDepartment = async (req, res) => {
       description: description,
     });
     department.save();
-    return res.status(200).json({ message: "Department created successfully" });
+    return res.status(200).json({ message: "Department created successfully",department:department });
   } catch (error) {
     return res.status(500).json({ message: "Internal Server error" });
   }
@@ -19,6 +19,9 @@ exports.createDepartment = async (req, res) => {
 exports.getDepartment = async (req, res) => {
   try {
     const department = await Department.find();
+    if(!department){
+      return res.status(404).json({message:'No Department data found'})
+    }
     return res.status(200).json({ department: department });
   } catch (error) {
     return res.status(500).json({ message: "Internal Server error" });
