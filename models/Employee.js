@@ -18,17 +18,20 @@ const employeeSchema = mongoose.Schema(
     department: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Department",
+      required:true
     },
     position: {
       type: String,
+      required:true
     },
     role: {
       type: String,
       default: "employee",
+      required:true
     },
     image: {
       type: String,
-      default: "",
+      required:true
     },
   },
   {

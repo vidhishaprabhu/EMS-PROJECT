@@ -33,46 +33,53 @@ exports.getById = async (req, res) => {
     } else {
       return res
         .status(200)
-        .json({ message: `Department with ${id} fetched successfully`,department:department });
+        .json({
+          message: `Department with ${id} fetched successfully`,
+          department: department,
+        });
     }
   } catch (error) {
     return res.status(500).json({ message: "Internal Server error" });
   }
 };
-exports.updateDepartment=async(req,res)=>{
-  try{
-    const id=req.params.id;
-    const {name,description}=req.body
-    const department=await Department.findByIdAndUpdate(id,{name,description},{new:true})
-    if(!department){
-      return res.status(404).json({ message: "Department not found" });
+exports.updateDepartment = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const { name, description } = req.body;
+    if (!name) {
+      return res.status(400).json({ message: "Name feild is required" });
     }
-    else{
+    const department = await Department.findByIdAndUpdate(
+      id,
+      { name, description },
+      { new: true },
+    );
+    if (!department) {
+      return res.status(404).json({ message: "Department not found" });
+    } else {
       return res
         .status(200)
-        .json({ message: `Department with ${id} updated successfully`,department:department });
+        .json({
+          message: `Department with ${id} updated successfully`,
+          department: department,
+        });
     }
-
-  }
-  catch(error){
+  } catch (error) {
     return res.status(500).json({ message: "Internal Server error" });
   }
-}
-exports.deleteDepartment=async(req,res)=>{
-  try{
-    const id=req.params.id;
-    const department=await Department.findByIdAndDelete(id);
-    if(!department){
+};
+exports.deleteDepartment = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const department = await Department.findByIdAndDelete(id);
+    if (!department) {
       return res.status(404).json({ message: "Department not found" });
-    }
-    else{
+    } else {
       return res
         .status(200)
-        .json({ message: `Department with ${id} deleted successfully`});
+        .json({ message: `Department with ${id} deleted successfully` });
     }
-
-  }
-  catch(error){
+  } catch (error) {
     return res.status(500).json({ message: "Internal Server error" });
   }
-}
+};

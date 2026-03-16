@@ -6,7 +6,10 @@ const connectDB=require('./config/db')
 connectDB();
 app.use(express.json())
 const departmentRoutes=require('./routes/department')
+const employeeRoutes=require('./routes/employee')
+
 app.use('/api/department',departmentRoutes);
+app.use('/api/employee',employeeRoutes)
 app.listen(process.env.PORT,()=>{
   try{
     console.log(`Server started at port ${process.env.PORT}`);
