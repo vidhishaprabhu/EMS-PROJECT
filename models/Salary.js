@@ -2,7 +2,8 @@ const mongoose=require('mongoose');
 const salarySchema=mongoose.Schema({
   employee:{
     type:mongoose.Schema.Types.ObjectId,
-    ref:"Employee"
+    ref:"Employee",
+    required:true
   },
   basic:{
     type:Number,
