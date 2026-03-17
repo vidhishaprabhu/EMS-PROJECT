@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { AdminService } from '../../../services/dashboard/admin.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,5 +8,12 @@ import { Component } from '@angular/core';
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent {
+  adminService=inject(AdminService);
+  ngOnInit(){
+    // this.adminService.getAdminDashboard().subscribe((res:any)=>{
+    //   console.log(res);
+    // })
+
+  }
 
 }
