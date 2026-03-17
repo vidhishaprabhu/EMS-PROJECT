@@ -78,13 +78,12 @@ exports.getEmployee = async (req, res) => {
 };
 exports.getEmployeeById = async (req, res) => {
   try {
-    const id = req.params.id;
-    const employee = await Employee.findById(id);
+    const employee = await Employee.findById(req.user.id);
     if (!employee) {
       return res.status(404).json({ message: "Employee not found" });
     } else {
       return res.status(200).json({
-        message: `Employee with ${id} details fetched successfully`,
+        message: `Employee details fetched successfully`,
         employee: employee,
       });
     }

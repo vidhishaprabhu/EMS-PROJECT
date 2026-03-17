@@ -7,7 +7,7 @@ const {checkRole}=require('../middleware/roleMiddleware')
 router.post('/',verifyToken,checkRole('admin'),createEmployee)
 router.post('/login-employee',loginEmployee)
 router.get('/',getEmployee)
-router.get('/:id',verifyToken,getEmployeeById)
+router.get('/profile',verifyToken,getEmployeeById)
 router.put('/:id',verifyToken,updateEmployee)
 router.delete('/:id',verifyToken,deleteEmployee)
 
