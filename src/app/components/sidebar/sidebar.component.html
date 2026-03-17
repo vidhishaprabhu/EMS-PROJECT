@@ -1,0 +1,46 @@
+<div class="flex-shrink-0 p-3 text-white sidebar" style="width: 280px; height:100vh; background-color:#1e293b;">
+    <a href="/" class="d-flex align-items-center pb-3 mb-3 link-primary text-decoration-none border-bottom">
+      <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+      <span class="fs-5 fw-semibold text-white">EMS Portal</span>
+    </a>
+    <ul class="list-unstyled ps-0">
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed text-white" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+          Dashboard
+        </button>
+        <div class="collapse" id="dashboard-collapse">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li><a href="#" class="link-primary rounded text-white" routerLink="/admin/dashboard">Admin-Dashboard</a></li>
+            <li><a href="#" class="link-primary rounded text-white">Employee Dashboard</a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed text-white" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
+          Orders
+        </button>
+        <div class="collapse" id="orders-collapse">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li><a href="#" class="link-primary fs-6 rounded text-white">New</a></li>
+            <li><a href="#" class="link-primary rounded text-white">Processed</a></li>
+            <li><a href="#" class="link-primary rounded text-white">Shipped</a></li>
+            <li><a href="#" class="link-primary rounded text-white">Returned</a></li>
+          </ul>
+        </div>
+      </li>
+      
+      <li class="mb-1">
+        <button class="btn btn-toggle align-items-center rounded collapsed text-white" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
+          Account
+        </button>
+        <div class="collapse" id="account-collapse">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li><a href="#" class="link-primary rounded text-white">New...</a></li>
+            <li><a href="#" class="link-primary rounded text-white">Profile</a></li>
+            <li><a href="#" class="link-primary rounded text-white">Settings</a></li>
+            <li><a href="#" class="link-primary rounded text-white">Sign out</a></li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </div>
