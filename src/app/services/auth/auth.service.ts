@@ -5,12 +5,12 @@ import { environment } from '../../../environments/environment.development';
 @Injectable({
   providedIn: 'root'
 })
-export class AdminService {
+export class AuthService {
 
   constructor() { }
   http=inject(HttpClient)
-
-  getAdminDashboard(){
-    return this.http.get(`${environment.apiUrl}/dashboard/admin-dashboard`);
+  loginEmployee(email:string,password:string){
+    const body={email,password}
+    return this.http.post(`${environment.apiUrl}/admin/login-admin`,body);
   }
 }

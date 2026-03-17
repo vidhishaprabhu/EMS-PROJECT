@@ -1,16 +1,66 @@
-<form>
-  <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+<div
+  class="login-container d-flex justify-content-center align-items-center vh-100"
+>
+  <div
+    class="card shadow-lg border-0"
+    style="width: 22rem; border-radius: 15px"
+  >
+  <div class="card-header">
+      <h5 class="text-center">Employee Mangement System</h5>
+    </div>
+
+    <div class="text-center pt-4">
+      <div
+        class="auth-icon bg-primary text-white rounded-circle d-inline-flex align-items-center justify-content-center"
+      >
+        <i class="bi bi-lock-fill"></i>
+      </div>
+    </div>
+    
+    <div class="card-body p-4">
+      <h3 class="card-title text-center fw-bold mb-4">Login</h3>
+
+      <form [formGroup]="loginForm" (ngSubmit)="login()">
+        <div class="mb-3">
+          <label for="email" class="form-label small fw-bold text-muted"
+            >Email Address</label
+          >
+          <input
+            type="email"
+            formControlName="email"
+            class="form-control shadow-sm"
+            id="email"
+            placeholder="name@company.com"
+          />
+        </div>
+
+        <div class="mb-4">
+          <label for="password" class="form-label small fw-bold text-muted"
+            >Password</label
+          >
+          <input
+            type="password"
+            formControlName="password"
+            class="form-control shadow-sm"
+            id="password"
+            placeholder="••••••••"
+          />
+        </div>
+
+        <div class="d-grid gap-2">
+          <button
+            type="submit"
+            class="btn btn-primary py-2 fw-bold"
+            [disabled]="loginForm.invalid"
+          >
+            Sign In
+          </button>
+        </div>
+      </form>
+
+      <!-- <div class="text-center mt-3">
+        <a href="#" class="text-decoration-none small">Forgot password?</a>
+      </div> -->
+    </div>
   </div>
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1">
-  </div>
-  <div class="mb-3 form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+</div>
