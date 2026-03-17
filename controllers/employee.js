@@ -45,9 +45,9 @@ exports.loginEmployee = async (req, res) => {
       return res.status(404).json({ message: "Password does not match" });
     }
     const token = jwt.sign(
-      { id: existingEmp._id, name: existingEmp.name, email: existingEmp.email },
+      { id: existingEmp._id, name: existingEmp.name, email: existingEmp.email,role:existingEmp.role },
       process.env.JWT_SECRET,
-      { expiresIn: "5s" },
+      { expiresIn: "1m" },
     );
 
     return res.status(200).json({
@@ -57,6 +57,7 @@ exports.loginEmployee = async (req, res) => {
         id: existingEmp._id,
         name: existingEmp.name,
         email: existingEmp.email,
+        role:existingEmp.role
       },
     });
   } catch (error) {
