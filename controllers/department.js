@@ -29,15 +29,14 @@ exports.getDepartment = async (req, res) => {
 };
 exports.getById = async (req, res) => {
   try {
-    const id = req.params.id;
-    const department = await Department.findById(id);
+    const department = await Department.findById(req.user.id);
     if (!department) {
       return res.status(404).json({ message: "Department not found" });
     } else {
       return res
         .status(200)
         .json({
-          message: `Department with ${id} fetched successfully`,
+          message: `Department fetched successfully`,
           department: department,
         });
     }

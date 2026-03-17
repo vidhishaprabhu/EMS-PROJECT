@@ -36,14 +36,13 @@ exports.getLeave = async (req, res) => {
 };
 exports.getLeaveById = async (req, res) => {
   try {
-    const id = req.params.id;
-    const leave = await Leave.findById(id);
+    const leave = await Leave.findOne({employee:req.user.id});
     if (!leave) {
       return res.status(404).json({ message: "Leave not found" });
     } else {
       return res
         .status(200)
-        .json({ message: `Leave with ${id} fetched successfully` ,leave:leave});
+        .json({ message: `Leave fetched successfully` ,leave:leave});
     }
   } catch (error) {
     return res.status(500).json({ message: "Internal server error" });

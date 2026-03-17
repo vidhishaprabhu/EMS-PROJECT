@@ -38,15 +38,14 @@ exports.getSalary = async (req, res) => {
 };
 exports.getSalaryById = async (req, res) => {
   try {
-    const id = req.params.id;
-    const salary = await Salary.findById(id);
+    const salary = await Salary.findOne({employee:req.user.id});
     if (!salary) {
-      return res.status(404).json({ message: `Salary with ${id} not found` });
+      return res.status(404).json({ message: `Salary not found` });
     } else {
       return res
         .status(200)
         .json({
-          message: `Salary with ${id} fetched successfully`,
+          message: `Salary fetched successfully`,
           salary: salary,
         });
     }

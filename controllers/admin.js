@@ -36,7 +36,7 @@ exports.loginAdmin=async(req,res)=>{
     if(!isMatch){
       return res.status(404).json({message:'Password does not match'});
     }
-    const token = jwt.sign({id:existingAdmin._id,name:existingAdmin.name,email:existingAdmin.email,role:existingAdmin.role},process.env.JWT_SECRET,{expiresIn:'1m'});
+    const token = jwt.sign({id:existingAdmin._id,name:existingAdmin.name,email:existingAdmin.email,role:existingAdmin.role},process.env.JWT_SECRET,{expiresIn:'1h'});
 
     return res.status(200).json({message:'Admin logged in successfully',token:token,user:{
       id:existingAdmin._id,
