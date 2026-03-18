@@ -14,4 +14,8 @@ export class AdminService {
     return this.http.get(`${environment.apiUrl}/dashboard/admin-dashboard`);
   }
 
+  getAllEmployee(){
+    return this.http.get(`${environment.apiUrl}/employee`)
+  }
+
 }

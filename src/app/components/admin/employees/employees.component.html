@@ -1,0 +1,30 @@
+<div class="container">
+  <table class="table table-primary">
+    <thead>
+      <tr>
+        <th scope="col">S No</th>
+        <th scope="col">Photo</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Department</th>
+        <th scope="col">Position</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (employee of employees; track $index) {
+        <tr>
+          <td>{{$index+1}}</td>
+          <td><div class="ratio ratio-4x3">
+          @for (img of employee.image.split(','); track $index) {
+          <img [src]="img.trim()" class="rounded-5 border" width="20" height="20" />
+          }
+        </div></td>
+          <td>{{employee.name}}</td>
+          <td>{{employee.email}}</td>
+          <td>{{employee.department.name}}</td>
+          <td>{{employee.position}}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

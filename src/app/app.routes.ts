@@ -3,6 +3,7 @@ import { DashboardComponent } from './components/admin/dashboard/dashboard.compo
 import { LoginComponent } from './components/auth/login/login.component';
 import { MainLayoutComponent } from './layouts/main-layout/main-layout.component';
 import { EmployeeDashboardComponent } from './components/employee/employee-dashboard/employee-dashboard.component';
+import { EmployeesComponent } from './components/admin/employees/employees.component';
 
 export const routes: Routes = [
   {
@@ -24,7 +25,16 @@ export const routes: Routes = [
         children: [
           { path: 'dashboard', component: DashboardComponent },
           
-        ]
+        ],
+
+      },
+      {
+        path: 'admin',
+        children: [
+          { path: 'get-all-employee', component: EmployeesComponent },
+          
+        ],
+
       },
       {
         path: 'employee',
