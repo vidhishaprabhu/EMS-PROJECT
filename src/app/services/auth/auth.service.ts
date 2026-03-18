@@ -10,20 +10,23 @@ export class AuthService {
   constructor() {}
   http = inject(HttpClient);
   router = inject(Router);
-  loginAdmin(email: string, password: string) {
+  login(email: string, password: string) {
     const body = { email, password };
-    return this.http.post(`${environment.apiUrl}/admin/login-admin`, body);
+    return this.http.post(`${environment.apiUrl}/employee/login-admin-employee`, body);
   }
+
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     this.router.navigateByUrl('/login');
   }
+  setUser(user:any){
+    let users = localStorage.setItem('user', JSON.stringify(user));
+    console.log(users);
+    return users;
+  }
   getUser() {
     const user = localStorage.getItem('user');
     return user ? JSON.parse(user) : null;
   }
-
-  
-
 }
