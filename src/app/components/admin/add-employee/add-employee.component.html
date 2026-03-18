@@ -1,0 +1,119 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <div class="card shadow">
+        <div class="card-body">
+          <h5 class="card-title fw-bold mb-4">Add New Employee</h5>
+
+          <form [formGroup]="employeeForm">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="name" class="form-label">Name</label>
+                  <span class="text-danger">*</span>
+                  <input
+                    type="text"
+                    formControlName="name"
+                    class="form-control"
+                    id="name"
+                    placeholder="Name"
+                  />
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <span class="text-danger">*</span>
+                  <input
+                    type="email"
+                    formControlName="email"
+                    class="form-control"
+                    id="email"
+                    placeholder="yourname@company.com"
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="password" class="form-label">Password</label>
+                  <span class="text-danger">*</span>
+                  <input
+                    type="password"
+                    formControlName="password"
+                    class="form-control"
+                    id="password"
+                    placeholder="Password"
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="department" class="form-label">Department</label>
+                  <select formControlName="department" class="form-select" id="department">
+                    <option value="" disabled selected>
+                      Select Department
+                    </option>
+                    @for (dept of department; track dept._id) {
+                      <option [value]="dept._id">
+                        {{ dept.name }}
+                      </option>
+                    }
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="position" class="form-label">Position</label>
+                  <span class="text-danger">*</span>
+                  <input
+                    type="text"
+                    formControlName="position"
+                    class="form-control"
+                    id="position"
+                    placeholder="Position"
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="role" class="form-label">Role</label>
+                  <span class="text-danger">*</span>
+                  <input
+                    type="text"
+                    formControlName="role"
+                    class="form-control"
+                    id="role"
+                    placeholder="Role"
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label class="form-label"
+                    >Employee Photo<span class="text-danger">*</span></label
+                  >
+                  <input
+                    class="form-control"
+                    type="text"
+                    formControlName="employeePhoto"
+                    name="employeePhoto"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="col-md-12 mt-3">
+                <button
+                  class="btn btn-primary w-100 fw-bolder"
+                  (click)="addEmployee()"
+                >
+                  Add Employee
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

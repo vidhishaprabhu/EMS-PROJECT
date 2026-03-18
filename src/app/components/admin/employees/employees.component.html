@@ -1,30 +1,71 @@
-<div class="container">
-  <table class="table table-primary">
-    <thead>
-      <tr>
-        <th scope="col">S No</th>
-        <th scope="col">Photo</th>
-        <th scope="col">Name</th>
-        <th scope="col">Email</th>
-        <th scope="col">Department</th>
-        <th scope="col">Position</th>
-      </tr>
-    </thead>
-    <tbody>
-      @for (employee of employees; track $index) {
-        <tr>
-          <td>{{$index+1}}</td>
-          <td><div class="ratio ratio-4x3">
-          @for (img of employee.image.split(','); track $index) {
-          <img [src]="img.trim()" class="rounded-5 border" width="20" height="20" />
-          }
-        </div></td>
-          <td>{{employee.name}}</td>
-          <td>{{employee.email}}</td>
-          <td>{{employee.department.name}}</td>
-          <td>{{employee.position}}</td>
-        </tr>
-      }
-    </tbody>
-  </table>
+<div class="container mt-4">
+  <div class="row mb-4">
+    <div class="col-12">
+      <h2 class="fw-bolder text-center text-primary">Manage Employees</h2>
+      <hr class="w-25 mx-auto" />
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-12 d-flex justify-content-end">
+      <button class="btn btn-primary d-flex align-items-center gap-2" routerLink="/admin/add-employee">
+        <i class="fa fa-plus"></i>
+        Add New Employees
+      </button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="card shadow-sm">
+        <div class="table-responsive">
+          <table class="table table-hover align-middle mb-0">
+            <thead class="table-dark">
+              <tr>
+                <th scope="col" class="ps-3">S No</th>
+                <th scope="col">Photo</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Department</th>
+                <th scope="col">Position</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (employee of employees; track $index) {
+                <tr>
+                  <td class="ps-3 fw-bold">{{ $index + 1 }}</td>
+                  <td>
+                    <div class="d-flex gap-1">
+                      @for (img of employee.image.split(","); track $index) {
+                        <img
+                          [src]="img.trim()"
+                          class="rounded-circle border border-2 shadow-sm"
+                          style="object-fit: cover"
+                          width="40"
+                          height="40"
+                          alt="Employee"
+                        />
+                      }
+                    </div>
+                  </td>
+                  <td>
+                    <span class="fw-semibold text-dark">{{
+                      employee.name
+                    }}</span>
+                  </td>
+                  <td>{{ employee.email }}</td>
+                  <td>
+                    <span class="badge bg-info text-dark">{{
+                      employee.department.name
+                    }}</span>
+                  </td>
+                  <td>{{ employee.position }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
