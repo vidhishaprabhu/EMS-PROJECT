@@ -3,8 +3,10 @@ const app=express();
 const dotenv=require('dotenv');
 dotenv.config({path:'./config/.env'})
 const connectDB=require('./config/db')
+const cors=require('cors')
 connectDB();
 app.use(express.json())
+app.use(cors())
 const departmentRoutes=require('./routes/department')
 const employeeRoutes=require('./routes/employee')
 const leaveRoutes=require('./routes/leave');
