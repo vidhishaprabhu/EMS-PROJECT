@@ -13,4 +13,5 @@ export class AdminService {
   getAdminDashboard(){
     return this.http.get(`${environment.apiUrl}/dashboard/admin-dashboard`);
   }
+
 }

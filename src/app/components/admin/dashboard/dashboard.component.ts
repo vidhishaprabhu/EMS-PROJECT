@@ -12,9 +12,13 @@ export class DashboardComponent {
   totalEmp:number=0;
   totalDept:number=0;
   totalLeave:number=0;
+  leave:any=[]
   totalPendingLeaves:number=0;
   totalSalary:number=0;
   ngOnInit() {
+    this.getAllEmpDetails()
+  }
+  getAllEmpDetails(){
     this.adminService.getAdminDashboard().subscribe((res: any) => {
       this.totalEmp=res.totalEmp;
       console.log("Total Employee ",this.totalEmp);
@@ -28,4 +32,5 @@ export class DashboardComponent {
       console.log("Total Salary",this.totalSalary)
     });
   }
+  
 }

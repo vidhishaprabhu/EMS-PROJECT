@@ -26,14 +26,16 @@ export class LoginComponent {
   });
   login() {
     this.authService
-      .loginEmployee(
+      .loginAdmin(
         this.loginForm.value.email!,
         this.loginForm.value.password!,
       )
       .subscribe((res: any) => {
         if (res) {
           alert(res.message);
-          const token=localStorage.setItem('token',res.token)
+          const token=localStorage.setItem('token',res.token);
+          console.log(res.user);
+          const user=localStorage.setItem('user',JSON.stringify(res.user));
           this.router.navigateByUrl('/admin/dashboard')
         } else {
           console.error('There is some error');
