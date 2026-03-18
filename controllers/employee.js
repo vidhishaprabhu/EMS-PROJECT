@@ -1,4 +1,5 @@
 const Employee = require("../models/Employee");
+const Admin=require("../models/Admin")
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 exports.createEmployee = async (req, res) => {
@@ -33,33 +34,49 @@ exports.createEmployee = async (req, res) => {
     return res.status(500).json({ message: "Internal server error" });
   }
 };
-exports.loginEmployee = async (req, res) => {
+exports.login = async (req, res) => {
   try {
-    const { email, password} = req.body;
-    const existingEmp = await Employee.findOne({ email });
-    if (!existingEmp) {
-      return res.status(404).json({ message: "Employee not found" });
+    const { email, password } = req.body;
+
+    let user = await Admin.findOne({ email });
+    let role = "admin";
+
+    if (!user) {
+      user = await Employee.findOne({ email });
+      role = "employee";
     }
-    const isMatch = await bcrypt.compare(password, existingEmp.password);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.status(404).json({ message: "Password does not match" });
+      return res.status(400).json({ message: "Invalid password" });
     }
+
     const token = jwt.sign(
-      { id: existingEmp._id, name: existingEmp.name, email: existingEmp.email,role:existingEmp.role },
+      {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        role: role,   
+      },
       process.env.JWT_SECRET,
-      { expiresIn: "1h" },
+      { expiresIn: "1h" }
     );
 
     return res.status(200).json({
-      message: "Login was successfull",
-      token:token,
+      message: "Login successful",
+      token,
       user: {
-        id: existingEmp._id,
-        name: existingEmp.name,
-        email: existingEmp.email,
-        role:existingEmp.role
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        role: role,   // ✅ important
       },
     });
+
   } catch (error) {
     return res.status(500).json({ message: "Internal server error" });
   }
