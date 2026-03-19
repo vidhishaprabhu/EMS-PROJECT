@@ -5,29 +5,31 @@ import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-employees',
-  imports: [RouterLink,DatePipe],
+  imports: [RouterLink, DatePipe],
   templateUrl: './employees.component.html',
-  styleUrl: './employees.component.css'
+  styleUrl: './employees.component.css',
 })
 export class EmployeesComponent {
-  adminService=inject(AdminService)
-  router=inject(Router)
-  employees:any=[]
-  ngOnInit(){
+  adminService = inject(AdminService);
+  router = inject(Router);
+  employees: any = [];
+  ngOnInit() {
     this.getAllEmployees();
+  }
+  getAllEmployees() {
+    this.adminService.getAllEmployee().subscribe((res: any) => {
+      this.employees = res.employee;
+      console.log(this.employees);
+    });
+  }
+  viewEmployee(id: string) {
+    this.router.navigate(['/admin/view-employee', id]);
+  }
+  viewSalary(id: string) {
+    this.router.navigate(['/admin/view-salary',id]);
 
   }
-  getAllEmployees(){
-    this.adminService.getAllEmployee().subscribe((res:any)=>{
-      this.employees=res.employee
-      console.log(this.employees)
-
-    })
+  viewLeave(id:string){
+    
   }
-  viewEmployee(id:string){
-    this.router.navigate(['/admin/view-employee',id])
-
-  }
-
-
 }

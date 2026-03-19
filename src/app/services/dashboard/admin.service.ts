@@ -38,5 +38,13 @@ export class AdminService {
   getEmployeeById(id:string){
     return this.http.get(`${environment.apiUrl}/employee/${id}`);
   }
+
+  getSalaryById(id:string){
+    return this.http.get(`${environment.apiUrl}/salary/employee/${id}`)
+  }
+
+  getLeaveById(id:string){
+    return this.http.get(`${environment.apiUrl}/leave/employee/${id}`)
+  }
   
 }

@@ -6,6 +6,8 @@ import { EmployeeDashboardComponent } from './components/employee/employee-dashb
 import { EmployeesComponent } from './components/admin/employees/employees.component';
 import { AddEmployeeComponent } from './components/admin/add-employee/add-employee.component';
 import { ViewEmployeeComponent } from './components/admin/view-employee/view-employee.component';
+import { ViewSalaryComponent } from './components/admin/view-salary/view-salary.component';
+
 
 export const routes: Routes = [
   {
@@ -40,6 +42,10 @@ export const routes: Routes = [
       {
         path: 'admin',
         children: [{ path: 'view-employee/:id', component: ViewEmployeeComponent }],
+      },
+      {
+        path: 'admin',
+        children: [{ path: 'view-salary/:id', component: ViewSalaryComponent }],
       },
       {
         path: 'employee',
