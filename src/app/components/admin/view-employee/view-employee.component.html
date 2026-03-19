@@ -19,7 +19,7 @@
               <p><strong>Name:</strong> {{ employees.name }}</p>
               <p><strong>Department:</strong> {{ employees.department?.name }}</p>
               <p><strong>Gender:</strong> {{ employees.gender }}</p>
-              <p><strong>DOB:</strong> {{ employees.dateOfBirth | date }}</p>
+              <p><strong>DOB:</strong> {{ employees.dateOfBirth | date: 'dd-MM-yyyy' }}</p>
               <p><strong>Email:</strong> {{ employees.email }}</p>
               <p><strong>Position:</strong> {{ employees.position }}</p>
             </div>

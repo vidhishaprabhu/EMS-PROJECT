@@ -25,14 +25,14 @@
           <table class="table table-hover align-middle mb-0">
             <thead class="table-dark">
               <tr>
-                <th scope="col" class="ps-3">S No</th>
-                <th scope="col">Photo</th>
-                <th scope="col">Name</th>
+                <th scope="col" class="ps-3">S NO</th>
+                <th scope="col">PHOTO</th>
+                <th scope="col">NAME</th>
                 <th scope="col">DOB</th>
-                <th scope="col">Email</th>
-                <th scope="col">Department</th>
-                <th scope="col">Position</th>
-                <th scope="col">Action</th>
+                <th scope="col">EMAIL</th>
+                <th scope="col">DEPARTMENT</th>
+                <th scope="col">POSITION</th>
+                <th scope="col">ACTION</th>
               </tr>
             </thead>
             <tbody>
@@ -60,7 +60,7 @@
                   </td>
                   <td>
                     <span class="fw-semibold text-dark">{{
-                      employee.dateOfBirth | date
+                      employee.dateOfBirth | date: 'dd-MM-yyyy'
                     }}</span>
                   </td>
                   <td>{{ employee.email }}</td>
@@ -72,10 +72,10 @@
                   <td>{{ employee.position }}</td>
                   <td>
                     <span>
-                      <button class="btn btn-primary me-2" (click)="viewEmployee(employee._id)">View</button>
+                      <button class="btn btn-primary me-2" (click)="viewEmployee(employee._id)">View Employee</button>
                       <button class="btn btn-info me-2">Edit</button>
-                      <button class="btn btn-success me-2" (click)="viewSalary(employee._id)">Salary</button>
-                      <button class="btn btn-danger me-2">Leave</button>
+                      <button class="btn btn-success me-2" (click)="viewSalary(employee._id)">View Salary</button>
+                      <button class="btn btn-danger me-2" (click)="viewLeave(employee._id)">View Leave</button>
                     </span>
                   </td>
                 </tr>

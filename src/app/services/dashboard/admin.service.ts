@@ -47,4 +47,16 @@ export class AdminService {
     return this.http.get(`${environment.apiUrl}/leave/employee/${id}`)
   }
   
+  updateEmployee(id:string,name: string,
+    email: string,
+    password: string,
+    department: string,
+    position: string,
+    role: string,
+    image: string,
+    gender:string,
+    dateOfBirth:string){
+      const body = { name, email, password, department, position, role, image,gender,dateOfBirth };
+      return this.http.put(`${environment.apiUrl}/employee/${id}`,body)
+    }
 }

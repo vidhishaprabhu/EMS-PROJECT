@@ -1,1 +1,45 @@
-<p>view-leave works!</p>
+<div class="row">
+  <div class="col-12">
+    <div class="card shadow-sm">
+      <div class="card-title">
+        <h4 class="text-center fw-bolder">Manage Leaves</h4>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+          <thead class="table-dark">
+            <tr>
+              <th scope="col">EMP ID</th>
+              <th scope="col">FROM DATE</th>
+              <th scope="col">TO DATE</th>
+              <th scope="col">LEAVE TYPE</th>
+              <th scope="col">REASON</th>
+              <th scope="col">STATUS</th>
+              <th scope="col">APPLIED AT</th>
+            
+            </tr>
+          </thead>
+          <tbody>
+            @if (leaves.length === 0) {
+              <td colspan="5" class="text-center py-4">
+                <div class="text-muted">
+                  <i class="bi bi-info-circle me-2"></i>
+                  <p class="text-danger">No leave data found</p>
+                </div>
+              </td>
+            }
+
+            <tr>
+              <td>{{leaves.employee._id}}</td>
+              <td>{{ leaves.fromDate | date: 'dd-MM-yyyy' }}</td>
+              <td>{{ leaves.toDate | date: 'dd-MM-yyyy' }}</td>
+              <td>{{ leaves.leaveType}}</td>
+              <td>{{ leaves.reason}}</td>
+              <td>{{ leaves.status}}</td>
+              <td>{{ leaves.appliedAt | date: 'dd-MM-yyyy'}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

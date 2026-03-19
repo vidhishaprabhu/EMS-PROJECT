@@ -30,6 +30,6 @@ export class EmployeesComponent {
 
   }
   viewLeave(id:string){
-    
+    this.router.navigate(['/admin/view-leave',id]);
   }
 }
