@@ -4,8 +4,8 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 exports.createEmployee = async (req, res) => {
   try {
-    const { name, email, password, department, position, image } = req.body;
-    if (!name || !email || !password || !department || !position || !image) {
+    const { name, email, password, department, position, image,role,gender,dateOfBirth } = req.body;
+    if (!name || !email || !password || !department || !position || !image || !gender || !dateOfBirth || !role) {
       return res.status(400).json({ message: "All fields are required" });
     } else {
       const existingEmployee = await Employee.findOne({ email });
@@ -20,8 +20,12 @@ exports.createEmployee = async (req, res) => {
           email: email,
           password: hashpassword,
           department: department,
+          gender:gender,
+          dateOfBirth:dateOfBirth,
           position: position,
           image: image,
+          role:role,
+          
         });
         employee.save();
         return res.status(200).json({
@@ -73,7 +77,7 @@ exports.login = async (req, res) => {
         id: user._id,
         name: user.name,
         email: user.email,
-        role: role,   // ✅ important
+        role: role,   
       },
     });
 
@@ -84,7 +88,7 @@ exports.login = async (req, res) => {
 
 exports.getEmployee = async (req, res) => {
   try {
-    const employee = await Employee.find();
+    const employee = await Employee.find().populate('department','name');
     if (!employee) {
       return res.status(404).json({ message: "No Employee data found" });
     }
@@ -93,9 +97,9 @@ exports.getEmployee = async (req, res) => {
     return res.status(500).json({ message: "Internal server error" });
   }
 };
-exports.getEmployeeById = async (req, res) => {
+exports.getEmployeeInfo = async (req, res) => {
   try {
-    const employee = await Employee.findById(req.user.id);
+    const employee = await Employee.findById(req.user.id).populate('department','name');
     if (!employee) {
       return res.status(404).json({ message: "Employee not found" });
     } else {
@@ -108,10 +112,23 @@ exports.getEmployeeById = async (req, res) => {
     return res.status(500).json({ message: "Internal server error" });
   }
 };
+exports.getEmployeeById=async(req,res)=>{
+  try{
+    const id=req.params.id;
+    const employee=await Employee.findById(id).populate('department','name');
+    if(!employee){
+      return res.status(404).json({message:`Employee with ${id} not found`})
+    }
+    return res.status(200).json({message:`Employee with ${id} details fetched successfully`,employee:employee});
+  }
+  catch(error){
+    return res.status(500).json({ message: "Internal server error" });
+  }
+}
 exports.updateEmployee = async (req, res) => {
   try {
     const id = req.params.id;
-    const { name, email, password, department, position, role, image } =
+    const { name, email, password, department, position, role, image,gender,dateOfBirth } =
       req.body;
     if (
       !name ||
@@ -119,14 +136,16 @@ exports.updateEmployee = async (req, res) => {
       !password ||
       !department ||
       !position ||
-      !role ||
-      !image
+      !image ||
+      !gender ||
+      !dateOfBirth ||
+      !role
     ) {
       return res.status(400).json({ message: "All fields are required" });
     }
     const employee = await Employee.findByIdAndUpdate(
       id,
-      { name, email, password, department, position, role, image },
+      { name, email, password, department, position, role, image,gender,dateOfBirth },
       { new: true },
     );
     if (!employee) {

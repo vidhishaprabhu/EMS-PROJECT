@@ -28,6 +28,15 @@ const employeeSchema = mongoose.Schema(
       type: String,
       default: "employee",
     },
+    gender: {
+      type: String,
+      enum: ['Male', 'Female', 'other'],   
+      required: true
+    },
+    dateOfBirth: {
+      type: Date,
+      required: true
+    },
     image: {
       type: String,
       required:true
