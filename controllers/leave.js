@@ -1,14 +1,15 @@
 const Leave = require("../models/Leave");
 exports.createLeave = async (req, res) => {
   try {
-    const { employee, fromDate, toDate, reason, status } = req.body;
-    if (!employee || !fromDate || !toDate || !reason) {
+    const { employee, fromDate, toDate,leaveType, reason, status } = req.body;
+    if (!employee || !fromDate || !toDate || !leaveType || !reason) {
       return res.status(400).json({ message: "All fields are required" });
     } else {
       const leave = new Leave({
         employee: employee,
         fromDate: fromDate,
         toDate: toDate,
+        leaveType:leaveType,
         reason: reason,
         status: status,
       });
@@ -48,11 +49,27 @@ exports.getLeaveById = async (req, res) => {
     return res.status(500).json({ message: "Internal server error" });
   }
 };
+exports.getLeaveByEmployeeId = async (req, res) => {
+  try {
+    const leave = await Leave.findOne({ employee: req.params.id })
+      .populate('employee', 'name email');
+
+    if (!leave) {
+      return res.status(404).json({ message: "Leave not found" });
+    }
+
+    return res.status(200).json({ leave:leave });
+
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+};
 exports.updateLeave=async(req,res)=>{
   try{
     const id=req.params.id;
-    const { employee, fromDate, toDate, reason, status } = req.body;
-    if (!employee || !fromDate || !toDate || !reason) {
+    const { employee, fromDate, toDate,leaveType, reason, status } = req.body;
+    if (!employee || !fromDate || !toDate || !leaveType || !reason) {
       return res.status(400).json({ message: "All fields are required" });
     }
     else{

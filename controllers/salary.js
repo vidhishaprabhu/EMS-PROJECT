@@ -36,20 +36,51 @@ exports.getSalary = async (req, res) => {
     return res.status(500).json({ message: "Internal server error" });
   }
 };
-exports.getSalaryById = async (req, res) => {
+exports.getSalaryInfo = async (req, res) => {
   try {
-    const salary = await Salary.findOne({employee:req.user.id});
+    const salary = await Salary.findOne({ employee: req.user.id });
     if (!salary) {
       return res.status(404).json({ message: `Salary not found` });
     } else {
-      return res
-        .status(200)
-        .json({
-          message: `Salary fetched successfully`,
-          salary: salary,
-        });
+      return res.status(200).json({
+        message: `Salary fetched successfully`,
+        salary: salary,
+      });
     }
   } catch (error) {
+    return res.status(500).json({ message: "Internal server error" });
+  }
+};
+exports.getSalaryById = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const salary = await Salary.findById(id).populate('employee','name');
+    if (!salary) {
+      return res.status(404).json({ message: `Salary with ${id} not found` });
+    }
+    return res
+      .status(200)
+      .json({
+        message: `Salary with ${id} fetched successfully`,
+        salary: salary,
+      });
+  } catch (error) {
+    return res.status(500).json({ message: "Internal server error" });
+  }
+};
+exports.getSalaryByEmployeeId = async (req, res) => {
+  try {
+    const salary = await Salary.findOne({ employee: req.params.id })
+      .populate('employee', 'name email');
+
+    if (!salary) {
+      return res.status(404).json({ message: "Salary not found" });
+    }
+
+    return res.status(200).json({ salary });
+
+  } catch (error) {
+    console.error(error);
     return res.status(500).json({ message: "Internal server error" });
   }
 };
@@ -68,36 +99,29 @@ exports.updateSalary = async (req, res) => {
       if (!salary) {
         return res.status(404).json({ message: `Salary with ${id} not found` });
       } else {
-        return res
-          .status(200)
-          .json({
-            message: `Salary with ${id} updated successfully`,
-            salary: salary,
-          });
+        return res.status(200).json({
+          message: `Salary with ${id} updated successfully`,
+          salary: salary,
+        });
       }
     }
   } catch (error) {
     return res.status(500).json({ message: "Internal server error" });
   }
 };
-exports.deleteSalary=async(req,res)=>{
-  try{
-    const id=req.params.id;
-    const salary=await Salary.findByIdAndDelete(id);
-    if(!salary){
+exports.deleteSalary = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const salary = await Salary.findByIdAndDelete(id);
+    if (!salary) {
       return res.status(404).json({ message: `Salary with ${id} not found` });
+    } else {
+      return res.status(200).json({
+        message: `Salary with ${id} deleted successfully`,
+        salary: salary,
+      });
     }
-    else{
-      return res
-          .status(200)
-          .json({
-            message: `Salary with ${id} deleted successfully`,
-            salary: salary,
-          });
-    }
-
-  }
-  catch(error){
+  } catch (error) {
     return res.status(500).json({ message: "Internal server error" });
   }
-}
+};

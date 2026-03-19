@@ -13,6 +13,15 @@ const leaveSchema=mongoose.Schema({
     type:Date,
     required:true
   },
+  leaveType: {
+    type: String,
+    enum: ['Sick Leave', 'Casual Leave', 'Privilege Leave', 'Unpaid Leave'],
+    required: true
+  },
+  appliedAt: {
+    type: Date,
+    default: Date.now 
+  },
   reason:{
     type:String,
     required:true
