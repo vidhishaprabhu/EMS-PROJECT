@@ -8,7 +8,10 @@
 
   <div class="row mb-3">
     <div class="col-12 d-flex justify-content-end">
-      <button class="btn btn-primary d-flex align-items-center gap-2" routerLink="/admin/add-employee">
+      <button
+        class="btn btn-primary d-flex align-items-center gap-2"
+        routerLink="/admin/add-employee"
+      >
         <i class="fa fa-plus"></i>
         Add New Employees
       </button>
@@ -25,9 +28,11 @@
                 <th scope="col" class="ps-3">S No</th>
                 <th scope="col">Photo</th>
                 <th scope="col">Name</th>
+                <th scope="col">DOB</th>
                 <th scope="col">Email</th>
                 <th scope="col">Department</th>
                 <th scope="col">Position</th>
+                <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -53,6 +58,11 @@
                       employee.name
                     }}</span>
                   </td>
+                  <td>
+                    <span class="fw-semibold text-dark">{{
+                      employee.dateOfBirth | date
+                    }}</span>
+                  </td>
                   <td>{{ employee.email }}</td>
                   <td>
                     <span class="badge bg-info text-dark">{{
@@ -60,6 +70,14 @@
                     }}</span>
                   </td>
                   <td>{{ employee.position }}</td>
+                  <td>
+                    <span>
+                      <button class="btn btn-primary me-2" (click)="viewEmployee(employee._id)">View</button>
+                      <button class="btn btn-info me-2">Edit</button>
+                      <button class="btn btn-success me-2">Salary</button>
+                      <button class="btn btn-danger me-2">Leave</button>
+                    </span>
+                  </td>
                 </tr>
               }
             </tbody>

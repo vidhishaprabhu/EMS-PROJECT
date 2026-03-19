@@ -24,6 +24,8 @@ export class AddEmployeeComponent {
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required,Validators.max(7)]],
     department: ['', Validators.required],
+    gender:['',Validators.required],
+    dateOfBirth:['',Validators.required],
     position: ['', Validators.required],
     role: ['', Validators.required],
     employeePhoto: ['', Validators.required],
@@ -45,7 +47,7 @@ export class AddEmployeeComponent {
   }
   addEmployee(){
   this.adminService
-      .addEmployees(this.employeeForm.value.name!, this.employeeForm.value.email!,this.employeeForm.value.password!,this.employeeForm.value.department!,this.employeeForm.value.position!,this.employeeForm.value.role!,this.employeeForm.value.employeePhoto!)
+      .addEmployees(this.employeeForm.value.name!, this.employeeForm.value.email!,this.employeeForm.value.password!,this.employeeForm.value.department!,this.employeeForm.value.position!,this.employeeForm.value.role!,this.employeeForm.value.employeePhoto!,this.employeeForm.value.gender!,this.employeeForm.value.dateOfBirth!)
       .subscribe((res: any) => {
         if (res) {
           alert(res.message);

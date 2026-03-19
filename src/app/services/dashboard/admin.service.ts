@@ -29,8 +29,14 @@ export class AdminService {
     position: string,
     role: string,
     image: string,
+    gender:string,
+    dateOfBirth:string
   ) {
-    const body = { name, email, password, department, position, role, image };
+    const body = { name, email, password, department, position, role, image,gender,dateOfBirth };
     return this.http.post(`${environment.apiUrl}/employee/`, body);
   }
+  getEmployeeById(id:string){
+    return this.http.get(`${environment.apiUrl}/employee/${id}`);
+  }
+  
 }
