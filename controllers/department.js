@@ -3,8 +3,8 @@ const Department = require("../models/Department");
 exports.createDepartment = async (req, res) => {
   try {
     const { name, description } = req.body;
-    if (!name) {
-      return res.status(400).json({ message: "Name feild is required" });
+    if (!name || !description) {
+      return res.status(400).json({ message: "All feilds are required" });
     }
     const department = new Department({
       name: name,
@@ -27,7 +27,7 @@ exports.getDepartment = async (req, res) => {
     return res.status(500).json({ message: "Internal Server error" });
   }
 };
-exports.getById = async (req, res) => {
+exports.getDeptInfo = async (req, res) => {
   try {
     const department = await Department.findById(req.user.id);
     if (!department) {
@@ -44,6 +44,20 @@ exports.getById = async (req, res) => {
     return res.status(500).json({ message: "Internal Server error" });
   }
 };
+exports.getDepartmentById=async(req,res)=>{
+  try{
+    const id=req.params.id;
+    const department=await Department.findById(id);
+    if(!department){
+      return res.status(404).json({message:`Department of id ${id} not found`})
+    }
+    return res.status(200).json({message:`Department of id ${id} fetched successfully`,department:department});
+
+  }
+  catch(error){
+    return res.status(500).json({ message: "Internal Server error" });
+  }
+}
 exports.updateDepartment = async (req, res) => {
   try {
     const id = req.params.id;
