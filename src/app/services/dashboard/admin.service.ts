@@ -45,6 +45,11 @@ export class AdminService {
     };
     return this.http.post(`${environment.apiUrl}/employee/`, body);
   }
+
+  addDepartment(name:string,description:string){
+    const body={name,description}
+    return this.http.post(`${environment.apiUrl}/department`,body);
+  }
   getEmployeeById(id: string) {
     return this.http.get(`${environment.apiUrl}/employee/${id}`);
   }
@@ -57,6 +62,10 @@ export class AdminService {
     return this.http.get(`${environment.apiUrl}/leave/employee/${id}`);
   }
 
+  getDepartmentById(id:string){
+    return this.http.get(`${environment.apiUrl}/department/${id}`)
+  }
+  
   updateEmployee(
     id: string,
     name: string,
@@ -78,7 +87,15 @@ export class AdminService {
     };
     return this.http.put(`${environment.apiUrl}/employee/${id}`, body);
   }
+  updateDepartment(id:string,name:string,description:string){
+    const body={name,description};
+    return this.http.put(`${environment.apiUrl}/department/${id}`,body);
+  }
   deleteEmployee(id:string){
     return this.http.delete(`${environment.apiUrl}/employee/${id}`)
   }
+  deleteDepartment(id:string){
+    return this.http.delete(`${environment.apiUrl}/department/${id}`)
+  }
+
 }

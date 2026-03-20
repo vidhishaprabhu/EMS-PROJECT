@@ -8,6 +8,8 @@ import { AddEmployeeComponent } from './components/admin/add-employee/add-employ
 import { ViewEmployeeComponent } from './components/admin/view-employee/view-employee.component';
 import { ViewSalaryComponent } from './components/admin/view-salary/view-salary.component';
 import { ViewLeaveComponent } from './components/admin/view-leave/view-leave.component';
+import { DepartmentsComponent } from './components/admin/departments/departments.component';
+import { AddDepartmentComponent } from './components/admin/add-department/add-department.component';
 
 
 export const routes: Routes = [
@@ -55,6 +57,18 @@ export const routes: Routes = [
       {
         path: 'admin',
         children: [{ path: 'view-leave/:id', component: ViewLeaveComponent }],
+      },
+      {
+        path: 'admin',
+        children: [{ path: 'get-all-department', component: DepartmentsComponent }],
+      },
+      {
+        path: 'admin',
+        children: [{ path: 'add-department', component: AddDepartmentComponent }],
+      },
+      {
+        path: 'admin',
+        children: [{ path: 'add-department/:id', component: AddDepartmentComponent }],
       },
       {
         path: 'employee',
