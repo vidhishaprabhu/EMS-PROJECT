@@ -128,24 +128,22 @@ exports.getEmployeeById=async(req,res)=>{
 exports.updateEmployee = async (req, res) => {
   try {
     const id = req.params.id;
-    const { name, email, password, department, position, role, image,gender,dateOfBirth } =
+    const { name, email,department, position, role, image,gender,dateOfBirth } =
       req.body;
     if (
       !name ||
       !email ||
-      !password ||
       !department ||
       !position ||
       !image ||
       !gender ||
-      !dateOfBirth ||
-      !role
+      !dateOfBirth
     ) {
       return res.status(400).json({ message: "All fields are required" });
     }
     const employee = await Employee.findByIdAndUpdate(
       id,
-      { name, email, password, department, position, role, image,gender,dateOfBirth },
+      { name, email, department, position, role, image,gender,dateOfBirth },
       { new: true },
     );
     if (!employee) {
