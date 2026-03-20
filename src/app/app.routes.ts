@@ -46,6 +46,10 @@ export const routes: Routes = [
       },
       {
         path: 'admin',
+        children: [{ path: 'add-employee/:id', component: AddEmployeeComponent }],
+      },
+      {
+        path: 'admin',
         children: [{ path: 'view-salary/:id', component: ViewSalaryComponent }],
       },
       {

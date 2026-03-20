@@ -10,7 +10,7 @@
     <div class="col-12 d-flex justify-content-end">
       <button
         class="btn btn-primary d-flex align-items-center gap-2"
-        routerLink="/admin/add-employee"
+        (click)="addEmp()"
       >
         <i class="fa fa-plus"></i>
         Add New Employees
@@ -60,7 +60,7 @@
                   </td>
                   <td>
                     <span class="fw-semibold text-dark">{{
-                      employee.dateOfBirth | date: 'dd-MM-yyyy'
+                      employee.dateOfBirth | date: "dd-MM-yyyy"
                     }}</span>
                   </td>
                   <td>{{ employee.email }}</td>
@@ -71,12 +71,58 @@
                   </td>
                   <td>{{ employee.position }}</td>
                   <td>
-                    <span>
-                      <button class="btn btn-primary me-2" (click)="viewEmployee(employee._id)">View Employee</button>
-                      <button class="btn btn-info me-2">Edit</button>
-                      <button class="btn btn-success me-2" (click)="viewSalary(employee._id)">View Salary</button>
-                      <button class="btn btn-danger me-2" (click)="viewLeave(employee._id)">View Leave</button>
-                    </span>
+                    <div class="dropdown">
+                      <button
+                        class="btn btn-light btn-sm border dropdown-toggle"
+                        type="button"
+                        data-bs-toggle="dropdown"
+                      >
+                        <i class="bi bi-three-dots-vertical"></i> Actions
+                      </button>
+                      <ul class="dropdown-menu shadow">
+                        <li>
+                          <a
+                            class="dropdown-item"
+                            (click)="viewEmployee(employee._id)"
+                            ><i class="bi bi-eye me-2 text-primary"></i> View
+                            Profile</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            class="dropdown-item"
+                            (click)="editEmployee(employee._id)"
+                            ><i class="bi bi-pencil me-2 text-info"></i> Edit</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            class="dropdown-item"
+                            (click)="viewSalary(employee._id)"
+                            ><i class="bi bi-cash-stack me-2 text-success"></i>
+                            Salary Details</a
+                          >
+                        </li>
+                        <li>
+                          <a
+                            class="dropdown-item"
+                            (click)="viewLeave(employee._id)"
+                            ><i
+                              class="bi bi-calendar-event me-2 text-danger"
+                            ></i>
+                            Leave Requests</a
+                          >
+                        </li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li>
+                          <a
+                            class="dropdown-item text-danger"
+                            (click)="deleteEmployee(employee._id)"
+                            ><i class="bi bi-trash me-2"></i> Delete</a
+                          >
+                        </li>
+                      </ul>
+                    </div>
                   </td>
                 </tr>
               }

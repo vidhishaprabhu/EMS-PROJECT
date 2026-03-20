@@ -3,7 +3,12 @@
     <div class="col-md-10">
       <div class="card shadow">
         <div class="card-body">
-          <h5 class="card-title fw-bold mb-4">Add New Employee</h5>
+          @if (isEdit===false) {
+            <h5 class="card-title fw-bold mb-4">Add New Employee</h5>
+          }
+          @else {
+            <h5 class="card-title fw-bold mb-4">Update New Employee</h5>
+          }
 
           <form [formGroup]="employeeForm">
             <div class="row">
@@ -131,7 +136,8 @@
                   />
                 </div>
               </div>
-              <div class="col-md-12 mt-3">
+              @if(isEdit===false){
+                <div class="col-md-12 mt-3">
                 <button
                   class="btn btn-primary w-100 fw-bolder"
                   (click)="addEmployee()"
@@ -139,6 +145,18 @@
                   Add Employee
                 </button>
               </div>
+
+              }
+              @else {
+                <div class="col-md-12 mt-3">
+                <button
+                  class="btn btn-primary w-100 fw-bolder"
+                  (click)="addEmployee()"
+                >
+                Update Employee
+                </button>
+              </div>
+              }
             </div>
           </form>
         </div>

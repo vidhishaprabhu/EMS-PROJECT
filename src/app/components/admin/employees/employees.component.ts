@@ -13,6 +13,7 @@ export class EmployeesComponent {
   adminService = inject(AdminService);
   router = inject(Router);
   employees: any = [];
+  
   ngOnInit() {
     this.getAllEmployees();
   }
@@ -31,5 +32,18 @@ export class EmployeesComponent {
   }
   viewLeave(id:string){
     this.router.navigate(['/admin/view-leave',id]);
+  }
+  editEmployee(id:string){
+    this.router.navigate(['/admin/add-employee',id])
+  }
+  addEmp(){
+    
+    this.router.navigate(['/admin/add-employee'])
+  }
+  deleteEmployee(id:string){
+    this.adminService.deleteEmployee(id).subscribe((res:any)=>{
+      alert(res.message);
+      this.getAllEmployees();
+    })
   }
 }

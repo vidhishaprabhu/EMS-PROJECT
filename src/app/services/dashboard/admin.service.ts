@@ -16,9 +16,9 @@ export class AdminService {
   getAllEmployee() {
     return this.http.get(`${environment.apiUrl}/employee`);
   }
-  
-  getAllDept(){
-    return this.http.get(`${environment.apiUrl}/department`)
+
+  getAllDept() {
+    return this.http.get(`${environment.apiUrl}/department`);
   }
 
   addEmployees(
@@ -29,34 +29,56 @@ export class AdminService {
     position: string,
     role: string,
     image: string,
-    gender:string,
-    dateOfBirth:string
+    gender: string,
+    dateOfBirth: string,
   ) {
-    const body = { name, email, password, department, position, role, image,gender,dateOfBirth };
+    const body = {
+      name,
+      email,
+      password,
+      department,
+      position,
+      role,
+      image,
+      gender,
+      dateOfBirth,
+    };
     return this.http.post(`${environment.apiUrl}/employee/`, body);
   }
-  getEmployeeById(id:string){
+  getEmployeeById(id: string) {
     return this.http.get(`${environment.apiUrl}/employee/${id}`);
   }
 
-  getSalaryById(id:string){
-    return this.http.get(`${environment.apiUrl}/salary/employee/${id}`)
+  getSalaryById(id: string) {
+    return this.http.get(`${environment.apiUrl}/salary/employee/${id}`);
   }
 
-  getLeaveById(id:string){
-    return this.http.get(`${environment.apiUrl}/leave/employee/${id}`)
+  getLeaveById(id: string) {
+    return this.http.get(`${environment.apiUrl}/leave/employee/${id}`);
   }
-  
-  updateEmployee(id:string,name: string,
+
+  updateEmployee(
+    id: string,
+    name: string,
     email: string,
-    password: string,
     department: string,
     position: string,
-    role: string,
     image: string,
-    gender:string,
-    dateOfBirth:string){
-      const body = { name, email, password, department, position, role, image,gender,dateOfBirth };
-      return this.http.put(`${environment.apiUrl}/employee/${id}`,body)
-    }
+    gender: string,
+    dateOfBirth: string,
+  ) {
+    const body = {
+      name,
+      email,
+      department,
+      position,
+      image,
+      gender,
+      dateOfBirth,
+    };
+    return this.http.put(`${environment.apiUrl}/employee/${id}`, body);
+  }
+  deleteEmployee(id:string){
+    return this.http.delete(`${environment.apiUrl}/employee/${id}`)
+  }
 }
