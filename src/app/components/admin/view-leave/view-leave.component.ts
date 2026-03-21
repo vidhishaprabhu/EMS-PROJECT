@@ -15,9 +15,9 @@ export class ViewLeaveComponent {
   adminService=inject(AdminService)
   ngOnInit(){
     const id=this.route.snapshot.paramMap.get('id')
-    this.adminService.getLeaveById(id!).subscribe((res:any)=>{
+    this.adminService.getLeaveInfo(id!).subscribe((res:any)=>{
       this.leaves=res.leave
-      console.log("Leave",this.leaves)
+      console.log("Leavvxcvcvcve",this.leaves)
     })
 
   }

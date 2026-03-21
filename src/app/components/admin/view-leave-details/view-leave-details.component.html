@@ -1,0 +1,83 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <div class="card shadow">
+        <div class="card-body">
+          <div class="row align-items-center">
+            <div class="col-md-4 text-center">
+              <div class="d-flex gap-1">
+                @for (img of leaves.employee.image.split(","); track $index) {
+                  <img
+                    [src]="img.trim()"
+                    class="rounded-circle border border-8 shadow-sm"
+                    style="object-fit: cover"
+                    width="150"
+                    height="150"
+                    alt="Employee"
+                  />
+                }
+              </div>
+            </div>
+
+            <div class="col-md-8">
+              <p>
+                <strong>Name: {{ leaves.employee.name }}</strong>
+              </p>
+              <p>
+                <strong>EMP Id: {{ leaves.employee._id }}</strong>
+              </p>
+              <p>
+                <strong>Leave Type: {{ leaves.leaveType }}</strong>
+              </p>
+              <p>
+                <strong>Reason: {{ leaves.reason }}</strong>
+              </p>
+              <p><strong>Department:</strong></p>
+              <p>
+                <strong
+                  >Start Date: {{ leaves.toDate | date: "dd-MM-yyyy" }}</strong
+                >
+              </p>
+              <p>
+                <strong
+                  >From Date: {{ leaves.fromDate | date: "dd-MM-yyyy" }}</strong
+                >
+              </p>
+              @if (leaves.status === "Pending") {
+                <div>
+                  <button
+                    class="btn btn-success me-2"
+                    (click)="updateStatus('Approved')"
+                  >
+                    Approved
+                  </button>
+
+                  <button
+                    class="btn btn-danger"
+                    (click)="updateStatus('Rejected')"
+                  >
+                    Rejected
+                  </button>
+                </div>
+              } @else {
+                <p>
+                  <strong>Status:</strong>
+                  <span
+                    class="badge"
+                    [ngClass]="{
+                      'bg-warning': leaves.status?.toLowerCase() === 'pending',
+                      'bg-success': leaves.status?.toLowerCase() === 'approved',
+                      'bg-danger': leaves.status?.toLowerCase() === 'rejected',
+                    }"
+                  >
+                     {{ leaves.status }}
+                  </span>
+                </p>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

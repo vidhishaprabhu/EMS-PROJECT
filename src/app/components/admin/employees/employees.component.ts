@@ -13,6 +13,7 @@ export class EmployeesComponent {
   adminService = inject(AdminService);
   router = inject(Router);
   employees: any = [];
+  leaves:any=[]
   
   ngOnInit() {
     this.getAllEmployees();
@@ -30,8 +31,8 @@ export class EmployeesComponent {
     this.router.navigate(['/admin/view-salary',id]);
 
   }
-  viewLeave(id:string){
-    this.router.navigate(['/admin/view-leave',id]);
+  viewLeave(leave:any){
+    this.router.navigate(['/admin/view-leave',leave]);
   }
   editEmployee(id:string){
     this.router.navigate(['/admin/add-employee',id])

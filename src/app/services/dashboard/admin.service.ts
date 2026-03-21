@@ -21,6 +21,10 @@ export class AdminService {
     return this.http.get(`${environment.apiUrl}/department`);
   }
 
+  getAllLeave(){
+    return this.http.get(`${environment.apiUrl}/leave`)
+  }
+
   addEmployees(
     name: string,
     email: string,
@@ -58,10 +62,13 @@ export class AdminService {
     return this.http.get(`${environment.apiUrl}/salary/employee/${id}`);
   }
 
-  getLeaveById(id: string) {
+  getLeaveInfo(id: string) {
     return this.http.get(`${environment.apiUrl}/leave/employee/${id}`);
   }
 
+  getLeaveById(id:string){
+    return this.http.get(`${environment.apiUrl}/leave/${id}`);
+  }
   getDepartmentById(id:string){
     return this.http.get(`${environment.apiUrl}/department/${id}`)
   }
@@ -96,6 +103,12 @@ export class AdminService {
   }
   deleteDepartment(id:string){
     return this.http.delete(`${environment.apiUrl}/department/${id}`)
+  }
+  deleteLeave(id:string){
+    return this.http.delete(`${environment.apiUrl}/leave/${id}`)
+  }
+  updateStatusInLeave(id:string,status:string){
+    return this.http.patch(`${environment.apiUrl}/leave/update-status/${id}`,{status})
   }
 
 }
