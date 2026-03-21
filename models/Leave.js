@@ -28,7 +28,9 @@ const leaveSchema=mongoose.Schema({
   },
   status:{
     type:String,
-    default:"Pending",
+    enum: ['Pending', 'Approved', 'Rejected'],
+    default:'Pending'
+    
   }
 })
 const Leave=mongoose.model("Leave",leaveSchema);

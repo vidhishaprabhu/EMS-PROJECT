@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 exports.createEmployee = async (req, res) => {
   try {
     const { name, email, password, department, position, image,role,gender,dateOfBirth } = req.body;
-    if (!name || !email || !password || !department || !position || !image || !gender || !dateOfBirth || !role) {
+    if (!name || !email || !password || !department || !position || !image || !gender || !dateOfBirth) {
       return res.status(400).json({ message: "All fields are required" });
     } else {
       const existingEmployee = await Employee.findOne({ email });
