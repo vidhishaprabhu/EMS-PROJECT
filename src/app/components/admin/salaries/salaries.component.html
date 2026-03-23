@@ -1,1 +1,112 @@
-<p>salaries works!</p>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <div class="card shadow">
+        <div class="card-body">
+          <form>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="department" class="form-label">Department</label>
+                  <span class="text-danger">*</span>
+                  <select
+                    formControlName="department"
+                    class="form-select"
+                    id="department"
+                  >
+                    <option value="" disabled selected>
+                      Select Department
+                    </option>
+                    @for (dept of department; track dept._id) {
+                      <option [value]="dept._id">
+                        {{ dept.name }}
+                      </option>
+                    }
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="employee" class="form-label">Employee</label>
+                  <span class="text-danger">*</span>
+                  <select
+                    formControlName="department"
+                    class="form-select"
+                    id="employee"
+                  >
+                    <option value="" disabled selected>Select Employee</option>
+                    @for (emp of employees; track emp._id) {
+                      <option [value]="emp._id">
+                        {{ emp.name }}
+                      </option>
+                    }
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="basic" class="form-label">Basic Salary</label>
+                  <span class="text-danger">*</span>
+                  <input
+                    type="number"
+                    formControlName="email"
+                    class="form-control"
+                    id="basic"
+                    placeholder="Basic Salary"
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="bonus" class="form-label">Bonus</label>
+                  <span class="text-danger">*</span>
+                  <input
+                    type="number"
+                    formControlName="email"
+                    class="form-control"
+                    id="bonus"
+                    placeholder="Bonus"
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="deduction" class="form-label">Deduction</label>
+                  <span class="text-danger">*</span>
+                  <input
+                    type="number"
+                    formControlName="email"
+                    class="form-control"
+                    id="deduction"
+                    placeholder="Deduction"
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="total" class="form-label">Total</label>
+                  <span class="text-danger">*</span>
+                  <input
+                    type="number"
+                    formControlName="email"
+                    class="form-control"
+                    id="total"
+                    placeholder="Total"
+                  />
+                </div>
+              </div>
+              <div class="col-md-12 mt-3">
+                <button
+                  class="btn btn-primary w-100 fw-bolder"
+                >
+                Add Salary
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

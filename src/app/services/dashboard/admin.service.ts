@@ -54,6 +54,11 @@ export class AdminService {
     const body={name,description}
     return this.http.post(`${environment.apiUrl}/department`,body);
   }
+
+  addSalaries(employee:string,basic:number,bonus:number,deduction:number,total:number){
+    const body={employee,basic,bonus,deduction,total}
+    return this.http.post(`${environment.apiUrl}/salary`,body);
+  }
   getEmployeeById(id: string) {
     return this.http.get(`${environment.apiUrl}/employee/${id}`);
   }
