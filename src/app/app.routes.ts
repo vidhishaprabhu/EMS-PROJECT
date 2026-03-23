@@ -13,6 +13,7 @@ import { AddDepartmentComponent } from './components/admin/add-department/add-de
 import { LeavesComponent } from './components/admin/leaves/leaves.component';
 import { ViewLeaveDetailsComponent } from './components/admin/view-leave-details/view-leave-details.component';
 import { SalariesComponent } from './components/admin/salaries/salaries.component';
+import { ChangePasswordComponent } from './components/admin/change-password/change-password.component';
 
 
 export const routes: Routes = [
@@ -80,6 +81,10 @@ export const routes: Routes = [
       {
         path: 'admin',
         children: [{ path: 'add-salaries', component: SalariesComponent }],
+      },
+      {
+        path: 'admin',
+        children: [{ path: 'change-password', component: ChangePasswordComponent }],
       },
       {
         path: 'employee',

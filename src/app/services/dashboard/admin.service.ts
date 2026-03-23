@@ -112,8 +112,12 @@ export class AdminService {
   deleteLeave(id:string){
     return this.http.delete(`${environment.apiUrl}/leave/${id}`)
   }
+  changePassword(currentPassword:string,newPassword:string,confirmPassword:string){
+    const body={currentPassword,newPassword,confirmPassword}
+    return this.http.put(`${environment.apiUrl}/admin/change-password-admin`,body)
+  }
   updateStatusInLeave(id:string,status:string){
     return this.http.patch(`${environment.apiUrl}/leave/update-status/${id}`,{status})
   }
-
+  
 }
