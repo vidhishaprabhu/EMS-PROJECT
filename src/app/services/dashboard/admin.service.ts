@@ -55,8 +55,8 @@ export class AdminService {
     return this.http.post(`${environment.apiUrl}/department`,body);
   }
 
-  addSalaries(employee:string,basic:number,bonus:number,deduction:number,total:number){
-    const body={employee,basic,bonus,deduction,total}
+  addSalaries(employee:string,basic:string,bonus:string,department:string,deduction:string,total:string){
+    const body={employee,basic,bonus,department,deduction,total}
     return this.http.post(`${environment.apiUrl}/salary`,body);
   }
   getEmployeeById(id: string) {

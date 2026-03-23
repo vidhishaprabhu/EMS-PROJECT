@@ -3,7 +3,7 @@
     <div class="col-md-10">
       <div class="card shadow">
         <div class="card-body">
-          <form>
+          <form [formGroup]="salaryForm">
             <div class="row">
               <div class="col-md-6">
                 <div class="mb-3">
@@ -30,7 +30,7 @@
                   <label for="employee" class="form-label">Employee</label>
                   <span class="text-danger">*</span>
                   <select
-                    formControlName="department"
+                    formControlName="employee"
                     class="form-select"
                     id="employee"
                   >
@@ -50,7 +50,7 @@
                   <span class="text-danger">*</span>
                   <input
                     type="number"
-                    formControlName="email"
+                    formControlName="basic"
                     class="form-control"
                     id="basic"
                     placeholder="Basic Salary"
@@ -63,7 +63,7 @@
                   <span class="text-danger">*</span>
                   <input
                     type="number"
-                    formControlName="email"
+                    formControlName="bonus"
                     class="form-control"
                     id="bonus"
                     placeholder="Bonus"
@@ -76,7 +76,7 @@
                   <span class="text-danger">*</span>
                   <input
                     type="number"
-                    formControlName="email"
+                    formControlName="deduction"
                     class="form-control"
                     id="deduction"
                     placeholder="Deduction"
@@ -89,7 +89,7 @@
                   <span class="text-danger">*</span>
                   <input
                     type="number"
-                    formControlName="email"
+                    formControlName="total"
                     class="form-control"
                     id="total"
                     placeholder="Total"
@@ -98,7 +98,9 @@
               </div>
               <div class="col-md-12 mt-3">
                 <button
+                [disabled]="salaryForm.invalid"
                   class="btn btn-primary w-100 fw-bolder"
+                  (click)="addSalary()"
                 >
                 Add Salary
                 </button>

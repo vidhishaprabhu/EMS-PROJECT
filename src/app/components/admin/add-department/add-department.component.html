@@ -43,6 +43,7 @@
                 @if (isEdit===false) {
                   <button
                   class="btn btn-primary w-100 fw-bolder"
+                  [disabled]="departmentForm.invalid"
                   (click)="addDepartment()"
                 >
                   Add Department
