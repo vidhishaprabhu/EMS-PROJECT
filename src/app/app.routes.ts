@@ -89,7 +89,7 @@ export const routes: Routes = [
       {
         path: 'employee',
         children: [
-          { path: 'dashboard', component: EmployeeDashboardComponent },
+          { path: 'employee-dashboard', component: EmployeeDashboardComponent },
         ],
       },
     ],

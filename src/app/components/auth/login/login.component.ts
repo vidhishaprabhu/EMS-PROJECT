@@ -42,7 +42,7 @@ export class LoginComponent {
             this.router.navigateByUrl('/admin/dashboard')
           }
           else{
-            this.router.navigateByUrl('/employee/dashboard')
+            this.router.navigateByUrl('/employee/employee-dashboard')
           }
         } else {
           console.error('There is some error');
