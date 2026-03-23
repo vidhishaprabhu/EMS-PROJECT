@@ -2,14 +2,15 @@ const Salary = require("../models/Salary");
 
 exports.createSalary = async (req, res) => {
   try {
-    const { employee, basic, bonus, deduction, total } = req.body;
-    if (!employee || !basic || !bonus || !deduction || !total) {
+    const { employee, basic, bonus, department, deduction, total } = req.body;
+    if (!employee || !basic || !bonus || !department || !deduction || !total) {
       return req.status(400).json({ message: "All fields are required" });
     } else {
       const salary = new Salary({
         employee: employee,
         basic: basic,
         bonus: bonus,
+        department:department,
         deduction: deduction,
         total: total,
       });
@@ -87,8 +88,8 @@ exports.getSalaryByEmployeeId = async (req, res) => {
 exports.updateSalary = async (req, res) => {
   try {
     const id = req.params.id;
-    const { employee, basic, bonus, deduction, total } = req.body;
-    if (!employee || !basic || !bonus || !deduction || !total) {
+    const { employee, basic, bonus,department, deduction, total } = req.body;
+    if (!employee || !basic || !bonus || !department || !deduction || !total) {
       return req.status(400).json({ message: "All fields are required" });
     } else {
       const salary = await Salary.findByIdAndUpdate(
