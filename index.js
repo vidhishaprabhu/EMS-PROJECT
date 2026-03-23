@@ -6,6 +6,7 @@ const connectDB=require('./config/db')
 const cors=require('cors')
 connectDB();
 app.use(express.json())
+app.use(express.urlencoded({ extended: true })); 
 app.use(cors())
 const departmentRoutes=require('./routes/department')
 const employeeRoutes=require('./routes/employee')
