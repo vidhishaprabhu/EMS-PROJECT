@@ -1,56 +1,103 @@
-<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark vh-100" style="width: 280px;">
-    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-      <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-      <span class="fs-4">EMS Portal</span>
-    </a>
-    <hr>
-    <ul class="nav nav-pills flex-column mb-auto">
-      @if (userRole==='admin') {
+<div
+  class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark vh-100"
+  style="width: 280px"
+>
+  <a
+    href="/"
+    class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"
+  >
+    <svg class="bi me-2" width="40" height="32">
+      <use xlink:href="#bootstrap"></use>
+    </svg>
+    <span class="fs-4">EMS Portal</span>
+  </a>
+  <hr />
+  <ul class="nav nav-pills flex-column mb-auto">
+    @if (userRole === "admin") {
       <li class="nav-item">
-        <a routerLink="/admin/dashboard" class="nav-link" aria-current="page">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#home"></use></svg>
-          Dashboard
+        <a routerLink="/admin/dashboard" class="nav-link" aria-current="page" routerLinkActive="active-link" >
+          
+          <i class="fa fa-tachometer me-2"></i> Dashboard
         </a>
       </li>
       <li>
-        <a routerLink="/admin/get-all-employee" class="nav-link text-white">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#speedometer2"></use></svg>
-          Employees
+        <a routerLink="/admin/get-all-employee" class="nav-link text-white" routerLinkActive="active-link">
+          
+        <i class="fa fa-user-circle me-2"></i>  Employees
         </a>
       </li>
       <li>
-        <a routerLink="/admin/get-all-department" class="nav-link text-white">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#table"></use></svg>
-          Departments
+        <a routerLink="/admin/get-all-department" class="nav-link text-white" routerLinkActive="active-link">
+          
+          <i class="fa fa-building-o me-2"></i> Departments
         </a>
       </li>
       <li>
-        <a routerLink="/admin/get-all-leave" class="nav-link text-white">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#grid"></use></svg>
-          Leaves
+        <a routerLink="/admin/get-all-leave" class="nav-link text-white" routerLinkActive="active-link">
+          
+        <i class="fa fa-plane me-2"></i>  Leaves
         </a>
       </li>
       <li>
-        <a routerLink="/admin/add-salaries" class="nav-link text-white">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
-          Salaries
+        <a routerLink="/admin/add-salaries" class="nav-link text-white" routerLinkActive="active-link">
+         
+        <i class="fa fa-rupee me-2"></i>  Salaries
         </a>
       </li>
       <li>
-        <a routerLink="/admin/change-password" class="nav-link text-white">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
-          Settings
+        <a routerLink="/admin/change-password" class="nav-link text-white" routerLinkActive="active-link">
+         
+        <i class="fa fa-gear me-2" style="color:white"></i>  Setting
         </a>
       </li>
-      }
-      @if (userRole==='employee') {
-        <li>
-        <a routerLink="/employee/employee-dashboard" class="nav-link text-white">
-          <svg class="bi me-2" width="16" height="16"><use xlink:href="#people-circle"></use></svg>
-          My-Profile
+    }
+    @if (userRole === "employee") {
+      <li>
+        <a
+          routerLink="/employee/employee-dashboard"
+          class="nav-link text-white"
+        >
+          
+          <i class="fa fa-tachometer me-2"></i> Dashboard
         </a>
       </li>
-      }
-    </ul>
-    <hr>
-  </div>
+      <li>
+        <a
+          routerLink="/employee/"
+          class="nav-link text-white"
+        >
+          
+          <i class="fa fa-user-circle me-2"></i> My Profile
+        </a>
+      </li>
+      <li>
+        <a
+          routerLink="/employee/"
+          class="nav-link text-white"
+        >
+          
+        <i class="fa fa-plane me-2"></i>  Leave
+        </a>
+      </li>
+      <li>
+        <a
+          routerLink="/employee/"
+          class="nav-link text-white"
+        >
+          
+         <i class="fa fa-rupee me-2"></i> Salary
+        </a>
+      </li>
+      <li>
+        <a
+          routerLink="/employee/"
+          class="nav-link text-white"
+        >
+          <i class="fa fa-gear me-2" style="color:white"></i>
+          Setting
+        </a>
+      </li>
+    }
+  </ul>
+  <hr />
+</div>

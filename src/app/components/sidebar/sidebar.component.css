@@ -40,3 +40,26 @@
   height: 100vh;
   background-color: #1e293b; 
 }
+
+/* ✅ active link style */
+.active-link {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  border-left: 3px solid #ffffff !important;
+  color: #ffffff !important;
+  font-weight: 500;
+}
+
+/* ✅ hover style */
+.nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff !important;
+  transition: all 0.2s ease;
+}
+
+/* ✅ all nav links base style */
+.nav-link {
+  padding: 10px 1.5rem;
+  font-size: 13px;
+  transition: all 0.2s ease;
+  border-left: 3px solid transparent; /* ✅ keeps layout stable */
+}
