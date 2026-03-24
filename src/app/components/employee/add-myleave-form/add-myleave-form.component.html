@@ -3,7 +3,6 @@
     <div class="col-md-10">
       <div class="card shadow">
         <div class="card-body">
-
           <form [formGroup]="myleaveForm">
             <div class="row">
               <div class="col-md-6">
@@ -17,6 +16,14 @@
                     id="employee"
                     placeholder="Employee Id"
                   />
+                  @if (
+                    myleaveForm.get("employee")?.invalid &&
+                    myleaveForm.get("employee")?.touched
+                  ) {
+                    <div>
+                      <span class="text-danger">Employee Id field is required</span>
+                    </div>
+                  }
                 </div>
               </div>
 
@@ -30,6 +37,11 @@
                     class="form-control"
                     id="fromDate"
                   />
+                  @if (myleaveForm.get('fromDate')?.invalid && myleaveForm.get('fromDate')?.touched) {
+                    <div>
+                      <span class="text-danger">From Date field is required</span>
+                    </div>
+                  }
                 </div>
               </div>
               <div class="col-md-6">
@@ -42,40 +54,57 @@
                     class="form-control"
                     id="toDate"
                   />
+                  @if (myleaveForm.get('toDate')?.invalid && myleaveForm.get('toDate')?.touched) {
+                    <div>
+                      <span class="text-danger">To Date field is required</span>
+                    </div>
+                  }
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="mb-3">
                   <label for="leaveType" class="form-label">Leave Type</label>
                   <span class="text-danger">*</span>
-                  <select formControlName="leaveType" class="form-select" id="leaveType">
-                    <option value="" selected>
-                      Select Leave Type
-                    </option>
-                    <option value="Sick Leave" selected>
-                      Sick Leave
-                    </option>
-                    <option value="Casual Leave" selected>
-                      Casual Leave
-                    </option>
+                  <select
+                    formControlName="leaveType"
+                    class="form-select"
+                    id="leaveType"
+                  >
+                    <option value="" selected>Select Leave Type</option>
+                    <option value="Sick Leave" selected>Sick Leave</option>
+                    <option value="Casual Leave" selected>Casual Leave</option>
                     <option value="Privilege Leave" selected>
                       Privilege Leave
                     </option>
-                    <option value="Unpaid Leave" selected>
-                      Unpaid Leave
-                    </option>
+                    <option value="Unpaid Leave" selected>Unpaid Leave</option>
                   </select>
+                  @if (myleaveForm.get('leaveType')?.invalid && myleaveForm.get('leaveType')?.touched) {
+                    <div>
+                      <span class="text-danger">Leave Type field is required</span>
+                    </div>
+                  }
                 </div>
               </div>
-              
+
               <div class="col-md-6">
                 <div class="mb-3">
                   <label for="reason" class="form-label">Reason</label>
                   <span class="text-danger">*</span>
-                    <textarea class="form-control" formControlName="reason" placeholder="Reason" id="reason" style="height: 100px"></textarea>
+                  <textarea
+                    class="form-control"
+                    formControlName="reason"
+                    placeholder="Reason"
+                    id="reason"
+                    style="height: 100px"
+                  ></textarea>
+                  @if (myleaveForm.get('reason')?.invalid && myleaveForm.get('reason')?.touched) {
+                    <div>
+                      <span class="text-danger">Reason field is required</span>
+                    </div>
+                  }
                 </div>
               </div>
-              
+
               <div class="col-md-12 mt-3">
                 <button
                   class="btn btn-primary w-100 fw-bolder"
@@ -85,10 +114,6 @@
                   Add Leave
                 </button>
               </div>
-              
-              
-              
-             
             </div>
           </form>
         </div>
@@ -96,4 +121,3 @@
     </div>
   </div>
 </div>
-
