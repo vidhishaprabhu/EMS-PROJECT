@@ -6,7 +6,7 @@ const {checkRole}=require('../middleware/roleMiddleware')
 
 router.post('/',verifyToken,checkRole('employee'),createLeave)
 router.get('/',verifyToken,checkRole('admin'),getLeave)
-router.get('/my-leaves',verifyToken,checkRole('employee'),getLeaveInfo)
+router.get('/my-leaves',verifyToken,getLeaveInfo)
 router.get('/employee/:id',verifyToken,getLeaveByEmployeeId)
 router.get('/:id',verifyToken,getLeaveById)
 router.put('/:id',verifyToken,checkRole('admin'),updateLeave)

@@ -1,7 +1,7 @@
 const Leave = require("../models/Leave");
 exports.createLeave = async (req, res) => {
   try {
-    const { employee, fromDate, toDate, leaveType, reason, status } = req.body;
+    const { employee, fromDate, toDate, leaveType, reason} = req.body;
     if (!employee || !fromDate || !toDate || !leaveType || !reason) {
       return res.status(400).json({ message: "All fields are required" });
     } else {
@@ -10,8 +10,7 @@ exports.createLeave = async (req, res) => {
         fromDate: fromDate,
         toDate: toDate,
         leaveType: leaveType,
-        reason: reason,
-        status: status,
+        reason: reason
       });
       leave.save();
       return res
@@ -50,8 +49,8 @@ exports.getLeaveById=async(req,res)=>{
 }
 exports.getLeaveInfo = async (req, res) => {
   try {
-    const leave = await Leave.findOne({ employee: req.user.id });
-    if (!leave) {
+    const leave = await Leave.find({ employee: req.user.id }); 
+    if (!leave || leave.length === 0) {
       return res.status(404).json({ message: "Leave not found" });
     } else {
       return res
