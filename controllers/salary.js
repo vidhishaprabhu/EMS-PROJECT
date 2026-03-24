@@ -39,14 +39,13 @@ exports.getSalary = async (req, res) => {
 };
 exports.getSalaryInfo = async (req, res) => {
   try {
-    const salary = await Salary.findOne({ employee: req.user.id });
-    if (!salary) {
-      return res.status(404).json({ message: `Salary not found` });
+    const salary = await Salary.find({ employee: req.user.id }); 
+    if (!salary || salary.length === 0) {
+      return res.status(404).json({ message: "Salary not found" });
     } else {
-      return res.status(200).json({
-        message: `Salary fetched successfully`,
-        salary: salary,
-      });
+      return res
+        .status(200)
+        .json({ message: `Salary fetched successfully`, salary: salary });
     }
   } catch (error) {
     return res.status(500).json({ message: "Internal server error" });

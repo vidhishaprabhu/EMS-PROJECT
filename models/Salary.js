@@ -26,6 +26,9 @@ const salarySchema=mongoose.Schema({
     type:Number,
     required:true
   }
+},
+{ 
+  timestamps: true 
 })
 const Salary=mongoose.model("Salary",salarySchema);
 module.exports=Salary
