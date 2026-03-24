@@ -3,10 +3,9 @@
     <div class="col-md-10">
       <div class="card shadow">
         <div class="card-body">
-          @if (isEdit===false) {
+          @if (isEdit === false) {
             <h5 class="card-title fw-bold mb-4">Add New Employee</h5>
-          }
-          @else {
+          } @else {
             <h5 class="card-title fw-bold mb-4">Update New Employee</h5>
           }
 
@@ -23,7 +22,16 @@
                     id="name"
                     placeholder="Name"
                   />
+                  @if (
+                  employeeForm.get("name")?.invalid &&
+                  employeeForm.get("name")?.touched
+                ) {
+                  <div>
+                    <span class="text-danger">Name field is required</span>
+                  </div>
+                }
                 </div>
+                
               </div>
 
               <div class="col-md-6">
@@ -37,7 +45,16 @@
                     id="email"
                     placeholder="yourname@company.com"
                   />
+                  @if (
+                  employeeForm.get("email")?.invalid &&
+                  employeeForm.get("email")?.touched
+                ) {
+                  <div>
+                    <span class="text-danger">Email field is required</span>
+                  </div>
+                }
                 </div>
+                
               </div>
               <div class="col-md-6">
                 <div class="mb-3">
@@ -50,13 +67,25 @@
                     id="password"
                     placeholder="Password"
                   />
+                  @if (
+                  employeeForm.get("password")?.invalid &&
+                  employeeForm.get("password")?.touched
+                ) {
+                  <div>
+                    <span class="text-danger">Password field is required</span>
+                  </div>
+                }
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="mb-3">
                   <label for="department" class="form-label">Department</label>
                   <span class="text-danger">*</span>
-                  <select formControlName="department" class="form-select" id="department">
+                  <select
+                    formControlName="department"
+                    class="form-select"
+                    id="department"
+                  >
                     <option value="" disabled selected>
                       Select Department
                     </option>
@@ -66,20 +95,38 @@
                       </option>
                     }
                   </select>
+                  @if (
+                  employeeForm.get("department")?.invalid &&
+                  employeeForm.get("department")?.touched
+                ) {
+                  <div>
+                    <span class="text-danger">Department field is required</span>
+                  </div>
+                }
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="mb-3">
                   <label for="gender" class="form-label">Gender</label>
                   <span class="text-danger">*</span>
-                  <select formControlName="gender" class="form-select" id="gender">
-                    <option value="" disabled selected>
-                      Select Gender
-                    </option>
-                      <option value="Male">Male</option>
-                      <option value="Female">Female</option>
-                      <option value="Other">Other</option>
+                  <select
+                    formControlName="gender"
+                    class="form-select"
+                    id="gender"
+                  >
+                    <option value="" disabled selected>Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
                   </select>
+                  @if (
+                  employeeForm.get("gender")?.invalid &&
+                  employeeForm.get("gender")?.touched
+                ) {
+                  <div>
+                    <span class="text-danger">Gender field is required</span>
+                  </div>
+                }
                 </div>
               </div>
               <div class="col-md-6">
@@ -93,6 +140,14 @@
                     id="dateOfBirth"
                     placeholder="DOB"
                   />
+                  @if (
+                  employeeForm.get("dateOfBirth")?.invalid &&
+                  employeeForm.get("dateOfBirth")?.touched
+                ) {
+                  <div>
+                    <span class="text-danger">DOB field is required</span>
+                  </div>
+                }
                 </div>
               </div>
               <div class="col-md-6">
@@ -106,6 +161,14 @@
                     id="position"
                     placeholder="Position"
                   />
+                  @if (
+                  employeeForm.get("position")?.invalid &&
+                  employeeForm.get("position")?.touched
+                ) {
+                  <div>
+                    <span class="text-danger">Position field is required</span>
+                  </div>
+                }
                 </div>
               </div>
               <div class="col-md-6">
@@ -119,6 +182,14 @@
                     id="role"
                     placeholder="Role"
                   />
+                  @if (
+                  employeeForm.get("role")?.invalid &&
+                  employeeForm.get("role")?.touched
+                ) {
+                  <div>
+                    <span class="text-danger">Role field is required</span>
+                  </div>
+                }
                 </div>
               </div>
               <div class="col-md-6">
@@ -134,29 +205,35 @@
                     placeholder="Enter URL"
                     required
                   />
+                  @if (
+                  employeeForm.get("employeePhoto")?.invalid &&
+                  employeeForm.get("employeePhoto")?.touched
+                ) {
+                  <div>
+                    <span class="text-danger">Employee Photo field is required</span>
+                  </div>
+                }
                 </div>
               </div>
-              @if(isEdit===false){
+              @if (isEdit === false) {
                 <div class="col-md-12 mt-3">
-                <button
-                  class="btn btn-primary w-100 fw-bolder"
-                  [disabled]="employeeForm.invalid"
-                  (click)="addEmployee()"
-                >
-                  Add Employee
-                </button>
-              </div>
-
-              }
-              @else {
+                  <button
+                    class="btn btn-primary w-100 fw-bolder"
+                    [disabled]="employeeForm.invalid"
+                    (click)="addEmployee()"
+                  >
+                    Add Employee
+                  </button>
+                </div>
+              } @else {
                 <div class="col-md-12 mt-3">
-                <button
-                  class="btn btn-primary w-100 fw-bolder"
-                  (click)="addEmployee()"
-                >
-                Update Employee
-                </button>
-              </div>
+                  <button
+                    class="btn btn-primary w-100 fw-bolder"
+                    (click)="addEmployee()"
+                  >
+                    Update Employee
+                  </button>
+                </div>
               }
             </div>
           </form>

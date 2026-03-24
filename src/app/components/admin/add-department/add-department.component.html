@@ -22,6 +22,11 @@
                     id="name"
                     placeholder="Name"
                   />
+                  @if (departmentForm.get('name')?.invalid && departmentForm.get('name')?.touched) {
+                  <div>
+                    <span class="text-danger">Name field is required</span>
+                  </div>
+                }
                 </div>
               </div>
 
@@ -35,7 +40,11 @@
                     placeholder="Description"
                     id="description"
                   ></textarea>
-                  
+                   @if (departmentForm.get('description')?.invalid && departmentForm.get('description')?.touched) {
+                  <div>
+                    <span class="text-danger">Description field is required</span>
+                  </div>
+                }
                 </div>
               </div>
 

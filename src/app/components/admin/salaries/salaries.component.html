@@ -24,6 +24,16 @@
                       </option>
                     }
                   </select>
+                  @if (
+                    salaryForm.get("department")?.invalid &&
+                    salaryForm.get("department")?.touched
+                  ) {
+                    <div>
+                      <span class="text-danger"
+                        >Department field is required</span
+                      >
+                    </div>
+                  }
                 </div>
               </div>
               <div class="col-md-6">
@@ -42,6 +52,16 @@
                       </option>
                     }
                   </select>
+                  @if (
+                    salaryForm.get("employee")?.invalid &&
+                    salaryForm.get("employee")?.touched
+                  ) {
+                    <div>
+                      <span class="text-danger"
+                        >Employee Id field is required</span
+                      >
+                    </div>
+                  }
                 </div>
               </div>
 
@@ -56,6 +76,16 @@
                     id="basic"
                     placeholder="Basic Salary"
                   />
+                  @if (
+                    salaryForm.get("basic")?.invalid &&
+                    salaryForm.get("basic")?.touched
+                  ) {
+                    <div>
+                      <span class="text-danger"
+                        >Basic field is required</span
+                      >
+                    </div>
+                  }
                 </div>
               </div>
               <div class="col-md-6">
@@ -69,6 +99,16 @@
                     id="bonus"
                     placeholder="Bonus"
                   />
+                  @if (
+                    salaryForm.get("bonus")?.invalid &&
+                    salaryForm.get("bonus")?.touched
+                  ) {
+                    <div>
+                      <span class="text-danger"
+                        >Bonus field is required</span
+                      >
+                    </div>
+                  }
                 </div>
               </div>
               <div class="col-md-6">
@@ -82,6 +122,16 @@
                     id="deduction"
                     placeholder="Deduction"
                   />
+                  @if (
+                    salaryForm.get("deduction")?.invalid &&
+                    salaryForm.get("deduction")?.touched
+                  ) {
+                    <div>
+                      <span class="text-danger"
+                        >Deduction field is required</span
+                      >
+                    </div>
+                  }
                 </div>
               </div>
               <div class="col-md-6">
@@ -95,15 +145,25 @@
                     id="total"
                     placeholder="Total"
                   />
+                  @if (
+                    salaryForm.get("total")?.invalid &&
+                    salaryForm.get("total")?.touched
+                  ) {
+                    <div>
+                      <span class="text-danger"
+                        >Total field is required</span
+                      >
+                    </div>
+                  }
                 </div>
               </div>
               <div class="col-md-12 mt-3">
                 <button
-                [disabled]="salaryForm.invalid"
+                  [disabled]="salaryForm.invalid"
                   class="btn btn-primary w-100 fw-bolder"
                   (click)="addSalary()"
                 >
-                Add Salary
+                  Add Salary
                 </button>
               </div>
             </div>
