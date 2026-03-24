@@ -172,18 +172,55 @@ exports.changePasswordEmployee = async (req, res) => {
     if (!employee) {
       return res
         .status(404)
-        .json({ message: `Employee with ${employeeId} not found` }); 
+        .json({ message: `Employee with ${employeeId} not found` });
     }
 
     const isMatch = await bcrypt.compare(currentPassword, employee.password);
     if (!isMatch) {
-      return res.status(400).json({ message: "Current password is incorrect" }); 400
+      return res.status(400).json({ message: "Current password is incorrect" });
+      400;
     }
 
     employee.password = await bcrypt.hash(newPassword, 10);
     await employee.save();
-    
-    return res.status(200).json({ message: "Password changed successfully",employee:employee });
+
+    return res
+      .status(200)
+      .json({ message: "Password changed successfully", employee: employee });
+  } catch (error) {
+    return res.status(500).json({ message: "Internal server error" });
+  }
+};
+exports.forgetPasswordEmployee = async (req, res) => {
+  try {
+    const { email, newPassword, confirmPassword } = req.body;
+    if (!email || !newPassword || !confirmPassword) {
+      return res.status(400).json({ message: "All fields are required" });
+    }
+
+    if (newPassword !== confirmPassword) {
+      return res
+        .status(400)
+        .json({ message: "New password and confirm password do not match" });
+    }
+
+    if (newPassword.length < 6) {
+      return res
+        .status(400)
+        .json({ message: "New password must be at least 6 characters" });
+    }
+
+    const employee = await Employee.findOne({ email });
+    if (!employee) {
+      return res
+        .status(404)
+        .json({ message: `Employee with ${email} not found` });
+    }
+
+    employee.password = await bcrypt.hash(newPassword, 10);
+    await employee.save();
+
+    return res.status(200).json({ message: "Password reset successfully"});
   } catch (error) {
     return res.status(500).json({ message: "Internal server error" });
   }
