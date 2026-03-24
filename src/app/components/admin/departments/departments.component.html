@@ -1,7 +1,7 @@
 <div class="container mt-4">
   <div class="row mb-4">
     <div class="col-12">
-      <h2 class="fw-bolder text-center text-primary">Manage Department</h2>
+      <h2 class="fw-bolder text-center text-dark">Manage Department</h2>
       <hr class="w-25 mx-auto" />
     </div>
   </div>
@@ -9,7 +9,7 @@
 
   <div class="row mb-3">
     <div class="col-12 d-flex justify-content-end">
-      <button class="btn btn-primary d-flex align-items-center gap-2" (click)="addDept()">
+      <button class="btn btn-danger d-flex align-items-center gap-2 fw-bolder" (click)="addDept()">
         <i class="fa fa-plus"></i>
         Add New Departments
       </button>
@@ -40,8 +40,8 @@
                 </td>
                 <td>
                   <div>
-                    <button class="btn btn-info me-2" (click)="editDepartment(department._id)">Edit</button>
-                    <button class="btn btn-danger" (click)="deleteDepartment(department._id)">Delete</button>
+                    <button class="btn btn-info me-2 fw-bolder text-white" (click)="editDepartment(department._id)">Edit</button>
+                    <button class="btn btn-danger fw-bolder" (click)="deleteDepartment(department._id)">Delete</button>
                   </div>
                 </td>
               </tr>

@@ -1,7 +1,7 @@
 <div class="container mt-4">
   <div class="row mb-4">
     <div class="col-12">
-      <h2 class="fw-bolder text-center text-primary">Manage Employees</h2>
+      <h2 class="fw-bolder text-center text-dark">Manage Employees</h2>
       <hr class="w-25 mx-auto" />
     </div>
   </div>
@@ -9,7 +9,7 @@
   <div class="row mb-3">
     <div class="col-12 d-flex justify-content-end">
       <button
-        class="btn btn-primary d-flex align-items-center gap-2"
+        class="btn btn-danger d-flex align-items-center gap-2 fw-bolder"
         (click)="addEmp()"
       >
         <i class="fa fa-plus"></i>
@@ -72,11 +72,11 @@
                   <td>{{ employee.position }}</td>
                   <td>
                     <span>
-                      <button class="btn btn-primary me-2" (click)="viewEmployee(employee._id)">View</button>
-                      <button class="btn btn-info me-2" (click)="editEmployee(employee._id)">Edit</button>
-                      <button class="btn btn-danger me-2" (click)="deleteEmployee(employee._id)">Delete</button>
-                      <button class="btn btn-success me-2" (click)="viewSalary(employee._id)">Salary</button>
-                      <button class="btn btn-danger me-2" (click)="viewLeave(employee._id)">Leave</button>
+                      <button class="btn btn-primary me-2 fw-bolder" (click)="viewEmployee(employee._id)">View</button>
+                      <button class="btn btn-info me-2 fw-bolder text-white" (click)="editEmployee(employee._id)">Edit</button>
+                      <button class="btn btn-danger me-2 fw-bolder" (click)="deleteEmployee(employee._id)">Delete</button>
+                      <button class="btn btn-success me-2 fw-bolder" (click)="viewSalary(employee._id)">Salary</button>
+                      <button class="btn btn-danger me-2 fw-bolder" (click)="viewLeave(employee._id)">Leave</button>
                     </span>
                   </td>
                 </tr>
