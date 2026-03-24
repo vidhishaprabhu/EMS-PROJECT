@@ -1,0 +1,32 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <div class="card shadow">
+        <div class="card-body">
+          <div class="row align-items-center">
+            
+            <div class="col-md-4 text-center">
+              <img 
+                [src]="employee.image" 
+                alt="Employee Image" 
+                class="rounded-circle img-fluid border" 
+                style="width: 150px; height: 150px; object-fit: cover;"
+              >
+            </div>
+
+            <div class="col-md-8">
+              <h5 class="card-title fw-bold mb-4">Employee Details</h5>
+              <p><strong>Name: {{employee.name}}</strong> </p>
+              <p><strong>Employee Id: {{employee._id}}</strong> </p>
+              <p><strong>Gender: {{employee.gender}}</strong> </p>
+              <p><strong>DOB: {{employee.dateOfBirth | date:'dd-MM-yyyy'}}</strong> </p>
+              <p><strong>Email: {{employee.email}}</strong></p>
+              <p><strong>Position: {{employee.position}}</strong> </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

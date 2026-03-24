@@ -17,4 +17,8 @@ export class EmployeeService {
   getLeaveInfo(){
     return this.http.get(`${environment.apiUrl}/leave/my-leaves`)
   }
+  addLeave(employee:string,fromDate:string,toDate:string,leaveType:string,reason:string){
+    const body={employee,fromDate,toDate,leaveType,reason}
+    return this.http.post(`${environment.apiUrl}/leave`,body);
+  }
 }

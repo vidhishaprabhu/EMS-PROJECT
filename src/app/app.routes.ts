@@ -14,6 +14,9 @@ import { LeavesComponent } from './components/admin/leaves/leaves.component';
 import { ViewLeaveDetailsComponent } from './components/admin/view-leave-details/view-leave-details.component';
 import { SalariesComponent } from './components/admin/salaries/salaries.component';
 import { ChangePasswordComponent } from './components/admin/change-password/change-password.component';
+import { MyProfileComponent } from './components/employee/my-profile/my-profile.component';
+import { MyLeaveComponent } from './components/employee/my-leave/my-leave.component';
+import { AddMyleaveFormComponent } from './components/employee/add-myleave-form/add-myleave-form.component';
 
 
 export const routes: Routes = [
@@ -90,6 +93,24 @@ export const routes: Routes = [
         path: 'employee',
         children: [
           { path: 'employee-dashboard', component: EmployeeDashboardComponent },
+        ],
+      },
+      {
+        path: 'employee',
+        children: [
+          { path: 'my-profile', component: MyProfileComponent },
+        ],
+      },
+      {
+        path: 'employee',
+        children: [
+          { path: 'my-leaves', component: MyLeaveComponent },
+        ],
+      },
+      {
+        path: 'employee',
+        children: [
+          { path: 'add-my-leave-form', component: AddMyleaveFormComponent },
         ],
       },
     ],

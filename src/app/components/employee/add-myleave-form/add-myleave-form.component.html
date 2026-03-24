@@ -1,0 +1,99 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <div class="card shadow">
+        <div class="card-body">
+
+          <form [formGroup]="myleaveForm">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="employee" class="form-label">Employee ID</label>
+                  <span class="text-danger">*</span>
+                  <input
+                    type="text"
+                    formControlName="employee"
+                    class="form-control"
+                    id="employee"
+                    placeholder="Employee Id"
+                  />
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="fromDate" class="form-label">From Date</label>
+                  <span class="text-danger">*</span>
+                  <input
+                    type="date"
+                    formControlName="fromDate"
+                    class="form-control"
+                    id="fromDate"
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="toDate" class="form-label">To Date</label>
+                  <span class="text-danger">*</span>
+                  <input
+                    type="date"
+                    formControlName="toDate"
+                    class="form-control"
+                    id="toDate"
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="leaveType" class="form-label">Leave Type</label>
+                  <span class="text-danger">*</span>
+                  <select formControlName="leaveType" class="form-select" id="leaveType">
+                    <option value="" selected>
+                      Select Leave Type
+                    </option>
+                    <option value="Sick Leave" selected>
+                      Sick Leave
+                    </option>
+                    <option value="Casual Leave" selected>
+                      Casual Leave
+                    </option>
+                    <option value="Privilege Leave" selected>
+                      Privilege Leave
+                    </option>
+                    <option value="Unpaid Leave" selected>
+                      Unpaid Leave
+                    </option>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="reason" class="form-label">Reason</label>
+                  <span class="text-danger">*</span>
+                    <textarea class="form-control" formControlName="reason" placeholder="Reason" id="reason" style="height: 100px"></textarea>
+                </div>
+              </div>
+              
+              <div class="col-md-12 mt-3">
+                <button
+                  class="btn btn-primary w-100 fw-bolder"
+                  [disabled]="myleaveForm.invalid"
+                  (click)="addMyLeave()"
+                >
+                  Add Leave
+                </button>
+              </div>
+              
+              
+              
+             
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
