@@ -77,7 +77,6 @@ export class AdminService {
   getDepartmentById(id:string){
     return this.http.get(`${environment.apiUrl}/department/${id}`)
   }
-  
   updateEmployee(
     id: string,
     name: string,

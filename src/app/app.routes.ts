@@ -17,7 +17,7 @@ import { ChangePasswordComponent } from './components/admin/change-password/chan
 import { MyProfileComponent } from './components/employee/my-profile/my-profile.component';
 import { MyLeaveComponent } from './components/employee/my-leave/my-leave.component';
 import { AddMyleaveFormComponent } from './components/employee/add-myleave-form/add-myleave-form.component';
-
+import { MySalaryComponent } from './components/employee/my-salary/my-salary.component';
 
 export const routes: Routes = [
   {
@@ -51,11 +51,15 @@ export const routes: Routes = [
       },
       {
         path: 'admin',
-        children: [{ path: 'view-employee/:id', component: ViewEmployeeComponent }],
+        children: [
+          { path: 'view-employee/:id', component: ViewEmployeeComponent },
+        ],
       },
       {
         path: 'admin',
-        children: [{ path: 'add-employee/:id', component: AddEmployeeComponent }],
+        children: [
+          { path: 'add-employee/:id', component: AddEmployeeComponent },
+        ],
       },
       {
         path: 'admin',
@@ -67,15 +71,24 @@ export const routes: Routes = [
       },
       {
         path: 'admin',
-        children: [{ path: 'view-leave-details/:id', component: ViewLeaveDetailsComponent }],
+        children: [
+          {
+            path: 'view-leave-details/:id',
+            component: ViewLeaveDetailsComponent,
+          },
+        ],
       },
       {
         path: 'admin',
-        children: [{ path: 'get-all-department', component: DepartmentsComponent }],
+        children: [
+          { path: 'get-all-department', component: DepartmentsComponent },
+        ],
       },
       {
         path: 'admin',
-        children: [{ path: 'add-department', component: AddDepartmentComponent }],
+        children: [
+          { path: 'add-department', component: AddDepartmentComponent },
+        ],
       },
       {
         path: 'admin',
@@ -87,7 +100,13 @@ export const routes: Routes = [
       },
       {
         path: 'admin',
-        children: [{ path: 'change-password', component: ChangePasswordComponent }],
+        children: [
+          {
+            path: 'change-password',
+            component: ChangePasswordComponent,
+            data: { role: 'admin' },
+          },
+        ],
       },
       {
         path: 'employee',
@@ -97,20 +116,30 @@ export const routes: Routes = [
       },
       {
         path: 'employee',
-        children: [
-          { path: 'my-profile', component: MyProfileComponent },
-        ],
+        children: [{ path: 'my-profile', component: MyProfileComponent }],
       },
       {
         path: 'employee',
-        children: [
-          { path: 'my-leaves', component: MyLeaveComponent },
-        ],
+        children: [{ path: 'my-leaves', component: MyLeaveComponent }],
       },
       {
         path: 'employee',
         children: [
           { path: 'add-my-leave-form', component: AddMyleaveFormComponent },
+        ],
+      },
+      {
+        path: 'employee',
+        children: [{ path: 'get-my-salary', component: MySalaryComponent }],
+      },
+      {
+        path: 'employee',
+        children: [
+          {
+            path: 'change-password',
+            component: ChangePasswordComponent,
+            data: { role: 'employee' },
+          },
         ],
       },
     ],
