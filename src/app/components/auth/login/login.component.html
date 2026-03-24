@@ -5,7 +5,7 @@
     class="card shadow-lg border-0"
     style="width: 22rem; border-radius: 15px"
   >
-  <div class="card-header">
+    <div class="card-header">
       <h5 class="text-center fw-bolder">EMS</h5>
     </div>
 
@@ -16,7 +16,7 @@
         <i class="bi bi-lock-fill"></i>
       </div>
     </div>
-    
+
     <div class="card-body p-4">
       <h3 class="card-title text-center fw-bold mb-4">Login</h3>
 
@@ -38,13 +38,22 @@
           <label for="password" class="form-label small fw-bold text-muted"
             >Password</label
           >
-          <input
-            type="password"
-            formControlName="password"
-            class="form-control shadow-sm"
-            id="password"
-            placeholder="••••••••"
-          />
+          <div class="input-group">
+            <input
+              formControlName="password"
+              [type]="showPassword ? 'text' : 'password'"
+              class="form-control shadow-sm"
+              id="password"
+              placeholder="Password"
+            />
+            <button
+              type="button"
+              class="btn btn-outline-secondary"
+              (click)="showPassword = !showPassword"
+            >
+              <i [class]="showPassword ? 'fa fa-eye' : 'fa fa-eye-slash'"></i>
+            </button>
+          </div>
         </div>
 
         <div class="d-grid gap-2">
@@ -55,6 +64,16 @@
           >
             Sign In
           </button>
+          
+        </div>
+        <div>
+          <a
+          routerLink="/forget-password"
+          class="nav-link text-danger fs-6 text-center mt-2"
+        >
+          <i class="fa fa-sign-in me-2" style="color:white"></i>
+          Forget Password
+        </a>
         </div>
       </form>
 

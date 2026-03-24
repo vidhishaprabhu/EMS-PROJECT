@@ -18,12 +18,17 @@ import { MyProfileComponent } from './components/employee/my-profile/my-profile.
 import { MyLeaveComponent } from './components/employee/my-leave/my-leave.component';
 import { AddMyleaveFormComponent } from './components/employee/add-myleave-form/add-myleave-form.component';
 import { MySalaryComponent } from './components/employee/my-salary/my-salary.component';
+import { ForgetPasswordComponent } from './components/auth/forget-password/forget-password.component';
 
 export const routes: Routes = [
   {
     path: '',
     redirectTo: 'login',
     pathMatch: 'full',
+  },
+  {
+    path: 'forget-password',
+    component: ForgetPasswordComponent,
   },
   {
     path: 'login',
@@ -108,6 +113,7 @@ export const routes: Routes = [
           },
         ],
       },
+
       {
         path: 'employee',
         children: [

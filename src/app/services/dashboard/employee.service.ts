@@ -24,7 +24,6 @@ export class EmployeeService {
     const body={currentPassword,newPassword,confirmPassword}
     return this.http.put(`${environment.apiUrl}/employee/change-password-employee`,body)
   }
-  
   addLeave(employee:string,fromDate:string,toDate:string,leaveType:string,reason:string){
     const body={employee,fromDate,toDate,leaveType,reason}
     return this.http.post(`${environment.apiUrl}/leave`,body);

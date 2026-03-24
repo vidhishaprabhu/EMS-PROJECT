@@ -33,11 +33,10 @@ export class ChangePasswordComponent {
   }
 
   changePassord(){
-     if (this.changePasswordForm.invalid) return; // ✅ guard check
+     if (this.changePasswordForm.invalid) return; 
 
     const { currentPassword, newPassword, confirmPassword } = this.changePasswordForm.value;
 
-    // ✅ picks service based on role
     const request = this.role === 'admin'
       ? this.adminService.changePassword(currentPassword!, newPassword!, confirmPassword!)
       : this.employeeService.changePassword(currentPassword!, newPassword!, confirmPassword!);
@@ -46,7 +45,6 @@ export class ChangePasswordComponent {
       next: (res: any) => {
         alert(res.message);
         this.changePasswordForm.reset();
-        // ✅ navigates based on role
         this.role === 'admin'
           ? this.router.navigate(['/admin/dashboard'])
           : this.router.navigate(['/employee/employee-dashboard']);

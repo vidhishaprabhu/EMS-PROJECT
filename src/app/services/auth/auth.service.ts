@@ -29,4 +29,8 @@ export class AuthService {
     const user = localStorage.getItem('user');
     return user ? JSON.parse(user) : null;
   }
+  forgetPasswordEmployee(email:string,newPassword:string,confirmPassword:string){
+    const body={email,newPassword,confirmPassword}
+    return this.http.put(`${environment.apiUrl}/employee/forget-password-employee`,body)
+  }
 }
