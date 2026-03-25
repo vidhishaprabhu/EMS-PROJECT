@@ -98,6 +98,12 @@ export const routes: Routes = [
       },
       {
         path: 'admin',
+        children: [
+          { path: 'add-department/:id', component: AddDepartmentComponent },
+        ],
+      },
+      {
+        path: 'admin',
         children: [{ path: 'get-all-leave', component: LeavesComponent }],
       },
       {

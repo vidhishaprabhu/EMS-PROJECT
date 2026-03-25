@@ -7,45 +7,42 @@
   </div>
 
   <div class="row mb-3">
-    <div class="col-12 d-flex justify-content-end gap-2">
-      <div class="d-flex">
-        <input
-          class="form-control me-2"
-          type="search"
-          placeholder="Search By Emp ID"
-          [(ngModel)]="searchId"
-        />
-        <button
-          class="btn btn-outline-danger fw-bolder"
-          (click)="filterByEmpId()"
-          type="button"
-        >
-          Search
-        </button>
-      </div>
+  <div class="col-12 d-flex justify-content-between align-items-center">
+
+    
+    <div class="d-flex">
+      <input
+        class="form-control me-2"
+        type="search"
+        placeholder="Search By Emp ID"
+        [(ngModel)]="searchId"
+      />
+      <button
+        class="btn btn-outline-danger fw-bolder"
+        (click)="filterByEmpId()"
+        type="button"
+      >
+        Search
+      </button>
+    </div>
+
+    <div class="d-flex gap-2">
       <button class="btn btn-danger fw-bolder" (click)="filterLeaves('All')">
         All
       </button>
-      <button
-        class="btn btn-danger fw-bolder"
-        (click)="filterLeaves('Pending')"
-      >
+      <button class="btn btn-danger fw-bolder" (click)="filterLeaves('Pending')">
         Pending
       </button>
-      <button
-        class="btn btn-danger fw-bolder"
-        (click)="filterLeaves('Approved')"
-      >
+      <button class="btn btn-danger fw-bolder" (click)="filterLeaves('Approved')">
         Approved
       </button>
-      <button
-        class="btn btn-danger fw-bolder"
-        (click)="filterLeaves('Rejected')"
-      >
+      <button class="btn btn-danger fw-bolder" (click)="filterLeaves('Rejected')">
         Rejected
       </button>
     </div>
+
   </div>
+</div>
 
   <div class="row">
     <div class="col-12">
@@ -79,7 +76,7 @@
                   </td>
                 </tr>
               } @else {
-                @for (leave of filteredLeaves; track leave._id) {
+                @for (leave of paginatedLeaves; track leave._id) {
                   <tr>
                     <td class="ps-3 fw-bold">{{ $index + 1 }}</td>
                     <td class="fw-bold">{{ leave.employee }}</td>
@@ -114,6 +111,25 @@
               }
             </tbody>
           </table>
+          <div class="d-flex justify-content-end mt-3">
+            <button
+              class="btn btn-outline-danger me-2"
+              (click)="prevPage()"
+              [disabled]="currentPage === 1"
+            >
+              Prev
+            </button>
+
+            <span class="mx-2">Page {{ currentPage }} of {{ totalPages }}</span>
+
+            <button
+              class="btn btn-outline-danger"
+              (click)="nextPage()"
+              [disabled]="currentPage >= totalPages"
+            >
+              Next
+            </button>
+          </div>
         </div>
       </div>
     </div>

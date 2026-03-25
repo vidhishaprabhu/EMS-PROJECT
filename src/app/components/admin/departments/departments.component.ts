@@ -15,6 +15,8 @@ export class DepartmentsComponent {
   filteredDepartment:any=[]
   searchId:string=''
   nodatafound:boolean=false
+  currentPage: number = 1;
+  itemsPerPage: number = 2;
   adminService=inject(AdminService)
   router=inject(Router)
 
@@ -27,24 +29,27 @@ export class DepartmentsComponent {
       this.departements=res.department;
       this.filteredDepartment=res.department;
       console.log(this.departements)
+      this.currentPage = 1;
     })
   }
 
   searchDepartment() {
   if (!this.searchId) {
     this.filteredDepartment = this.departements;
-    this.nodatafound = false; 
+    this.nodatafound = false;
+    this.currentPage = 1; // 🔥 important
     return;
   }
+
   this.filteredDepartment = this.departements.filter((emp: any) =>
-    emp.name.toLowerCase().includes(this.searchId.toLowerCase())
+    emp.name
+      ?.toLowerCase()
+      .includes(this.searchId.trim().toLowerCase())
   );
 
-  if (this.filteredDepartment.length === 0) {
-    this.nodatafound = true;
-  } else {
-    this.nodatafound = false;
-  }
+  this.nodatafound = this.filteredDepartment.length === 0;
+
+  this.currentPage = 1; // 🔥 reset page
 }
   deleteDepartment(id:string){
     this.adminService.deleteDepartment(id).subscribe((res:any)=>{
@@ -58,6 +63,27 @@ export class DepartmentsComponent {
 
   editDepartment(id:string){
     this.router.navigate(['/admin/add-department',id]);
+  }
+
+  get totalPages() {
+    return Math.ceil(this.filteredDepartment.length / this.itemsPerPage) || 1;
+  }
+
+  nextPage() {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+    }
+  }
+
+  prevPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+    }
+  }
+  get paginatedLeaves() {
+    const start = (this.currentPage - 1) * this.itemsPerPage;
+    const end = start + this.itemsPerPage;
+    return this.filteredDepartment.slice(start, end);
   }
   
 

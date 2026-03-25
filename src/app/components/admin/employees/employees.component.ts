@@ -18,6 +18,8 @@ export class EmployeesComponent {
   filteredEmployee: any = [];
   leaves: any = [];
   nodatafound:boolean=false
+  currentPage: number = 1;
+  itemsPerPage: number = 2;
 
   ngOnInit() {
     this.getAllEmployees();
@@ -27,7 +29,23 @@ export class EmployeesComponent {
       this.employees = res.employee;
       this.filteredEmployee = res.employee;
       console.log(this.employees);
+      this.currentPage = 1;
     });
+  }
+  get totalPages() {
+    return Math.ceil(this.filteredEmployee.length / this.itemsPerPage) || 1;
+  }
+
+  nextPage() {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+    }
+  }
+
+  prevPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+    }
   }
   searchEmployee() {
   if (!this.searchId) {
@@ -39,11 +57,8 @@ export class EmployeesComponent {
     emp.name.toLowerCase().includes(this.searchId.toLowerCase())
   );
 
-  if (this.filteredEmployee.length === 0) {
-    this.nodatafound = true;
-  } else {
-    this.nodatafound = false;
-  }
+   this.nodatafound = this.filteredEmployee.length === 0;
+    this.currentPage = 1;
 }
   viewEmployee(id: string) {
     this.router.navigate(['/admin/view-employee', id]);
@@ -65,5 +80,10 @@ export class EmployeesComponent {
       alert(res.message);
       this.getAllEmployees();
     });
+  }
+  get paginatedEmployees() {
+    const start = (this.currentPage - 1) * this.itemsPerPage;
+    const end = start + this.itemsPerPage;
+    return this.filteredEmployee.slice(start, end);
   }
 }

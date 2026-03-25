@@ -17,6 +17,8 @@ export class LeavesComponent {
   adminService = inject(AdminService);
   searchId: string = '';
   nodatafound: boolean = false;
+  currentPage: number = 1;
+  itemsPerPage: number = 2;
   router = inject(Router);
   ngOnInit() {
     this.getAllLeaves();
@@ -25,6 +27,7 @@ export class LeavesComponent {
     this.adminService.getAllLeave().subscribe((res: any) => {
       this.leaves = res.leave;
       this.filteredLeaves = res.leave;
+      this.currentPage = 1;
     });
   }
   deleteLeave(id: string) {
@@ -35,6 +38,21 @@ export class LeavesComponent {
   }
   viewLeaveDetails(id: string) {
     this.router.navigate(['/admin/view-leave-details', id]);
+  }
+  get totalPages() {
+    return Math.ceil(this.filteredLeaves.length / this.itemsPerPage) || 1;
+  }
+
+  nextPage() {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+    }
+  }
+
+  prevPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+    }
   }
   applyFilters() {
     this.filteredLeaves = this.leaves.filter((leave: any) => {
@@ -53,6 +71,13 @@ export class LeavesComponent {
 
     // 🔥 No data check
     this.nodatafound = this.filteredLeaves.length === 0;
+    this.currentPage = 1;
+  }
+
+  get paginatedLeaves() {
+    const start = (this.currentPage - 1) * this.itemsPerPage;
+    const end = start + this.itemsPerPage;
+    return this.filteredLeaves.slice(start, end);
   }
   filterLeaves(status: string) {
     this.activeFilter = status;
