@@ -7,11 +7,11 @@ import {
   Validators,
 } from '@angular/forms';
 import { AuthService } from '../../../services/auth/auth.service';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule,RouterLink],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
@@ -20,9 +20,10 @@ export class LoginComponent {
   private formBuilder = inject(FormBuilder);
   private authService = inject(AuthService);
   private router = inject(Router);
-  showPassword:boolean=false
+  route = inject(ActivatedRoute);
+  showPassword: boolean = false;
   user: any;
-  setUser:any;
+  setUser: any;
   loginForm = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.min(1), Validators.max(6)]],
@@ -39,15 +40,17 @@ export class LoginComponent {
           const token = localStorage.setItem('token', res.token);
           console.log(res.user);
           const user = localStorage.setItem('user', JSON.stringify(res.user));
-          if(res.user.role==='admin'){
-            this.router.navigateByUrl('/admin/dashboard')
-          }
-          else{
-            this.router.navigateByUrl('/employee/employee-dashboard')
+          if (res.user.role === 'admin') {
+            this.router.navigateByUrl('/admin/dashboard');
+          } else {
+            this.router.navigateByUrl('/employee/employee-dashboard');
           }
         } else {
           console.error('There is some error');
         }
       });
+  }
+  goToForgetPassword() {
+    this.router.navigate(['/forget-password']);
   }
 }
