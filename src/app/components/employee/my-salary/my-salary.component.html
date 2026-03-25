@@ -5,6 +5,26 @@
       <hr class="w-25 mx-auto" />
     </div>
   </div>
+  <div class="row mb-3">
+    <div class="col-12 d-flex justify-content-between align-items-center">
+      <div class="d-flex">
+        <input
+          class="form-control me-2"
+          type="search"
+          placeholder="Search By Status"
+          aria-label="Search"
+          [(ngModel)]="searchId"
+        />
+        <button
+          class="btn btn-outline-danger fw-bolder"
+          (click)="searchSalary()"
+          type="submit"
+        >
+          Search
+        </button>
+      </div>
+    </div>
+  </div>
   <div class="row">
     <div class="col-12">
       <div class="card shadow-sm">
@@ -22,7 +42,14 @@
               </tr>
             </thead>
             <tbody>
-              @for (salary of salaries; track $index) {
+              @if (nodatafound) {
+                <tr>
+                  <td colspan="8" class="text-center text-danger fw-bold">
+                    No Salary Found
+                  </td>
+                </tr>
+              }
+              @for (salary of filteredSalary; track $index) {
               <tr>
                 <td class="ps-3 fw-bold">{{$index+1}}</td>
                 <td class="fw-bold">{{salary.employee}}</td>

@@ -8,14 +8,40 @@
 
   <div class="row mb-3">
     <div class="col-12 d-flex justify-content-end gap-2">
-      <button class="btn btn-danger fw-bolder" (click)="filterLeaves('All')">All</button>
-      <button class="btn btn-danger fw-bolder" (click)="filterLeaves('Pending')">
+      <div class="d-flex">
+        <input
+          class="form-control me-2"
+          type="search"
+          placeholder="Search By Emp ID"
+          [(ngModel)]="searchId"
+        />
+        <button
+          class="btn btn-outline-danger fw-bolder"
+          (click)="filterByEmpId()"
+          type="button"
+        >
+          Search
+        </button>
+      </div>
+      <button class="btn btn-danger fw-bolder" (click)="filterLeaves('All')">
+        All
+      </button>
+      <button
+        class="btn btn-danger fw-bolder"
+        (click)="filterLeaves('Pending')"
+      >
         Pending
       </button>
-      <button class="btn btn-danger fw-bolder" (click)="filterLeaves('Approved')">
+      <button
+        class="btn btn-danger fw-bolder"
+        (click)="filterLeaves('Approved')"
+      >
         Approved
       </button>
-      <button class="btn btn-danger fw-bolder" (click)="filterLeaves('Rejected')">
+      <button
+        class="btn btn-danger fw-bolder"
+        (click)="filterLeaves('Rejected')"
+      >
         Rejected
       </button>
     </div>
