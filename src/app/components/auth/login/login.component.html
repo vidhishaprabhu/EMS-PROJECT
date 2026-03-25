@@ -54,9 +54,16 @@
               <i [class]="showPassword ? 'fa fa-eye' : 'fa fa-eye-slash'"></i>
             </button>
           </div>
+          
         </div>
 
+        <div class="mb-4">
+          <input type="checkbox" formControlName="rememberMe" /> Remember Me
+        </div>
+
+
         <div class="d-grid gap-2">
+          
           @if (errorMessage) {
             <p  class="text-danger text-center small">{{ errorMessage }}</p>
           }

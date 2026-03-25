@@ -31,6 +31,7 @@ export class LoginComponent {
       '',
       [Validators.required, Validators.minLength(1)],
     ],
+    rememberMe:[false]
   });
   ngOnInit() {
     this.user = this.authService.getUser();
@@ -42,8 +43,13 @@ export class LoginComponent {
         next: (res: any) => {
           if (res) {
             alert(res.message);
-            localStorage.setItem('token', res.token);
-            localStorage.setItem('user', JSON.stringify(res.user));
+            if (this.loginForm.value.rememberMe) {
+          localStorage.setItem('token', res.token);
+          localStorage.setItem('user', JSON.stringify(res.user));
+        } else {
+          sessionStorage.setItem('token', res.token);
+          sessionStorage.setItem('user', JSON.stringify(res.user));
+        }
 
             if (res.user.role === 'admin') {
               this.router.navigateByUrl('/admin/dashboard');
