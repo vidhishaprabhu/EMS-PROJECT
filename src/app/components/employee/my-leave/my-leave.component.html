@@ -59,7 +59,7 @@
                 </tr>
               }
 
-              @for (leave of filteredLeave; track leave._id) {
+              @for (leave of paginatedLeave; track leave._id) {
                 <tr>
                   <td class="ps-3 fw-bold">{{ $index + 1 }}</td>
                   <td class="fw-bold">{{ leave.employee }}</td>
@@ -79,6 +79,25 @@
               }
             </tbody>
           </table>
+          <div class="d-flex justify-content-end mt-3">
+            <button
+              class="btn btn-outline-danger me-2"
+              (click)="prevPage()"
+              [disabled]="currentPage === 1"
+            >
+              Prev
+            </button>
+
+            <span class="mx-2">Page {{ currentPage }} of {{ totalPages }}</span>
+
+            <button
+              class="btn btn-outline-danger"
+              (click)="nextPage()"
+              [disabled]="currentPage >= totalPages"
+            >
+              Next
+            </button>
+          </div>
         </div>
       </div>
     </div>

@@ -14,6 +14,8 @@ export class MySalaryComponent {
   searchId:string=''
   filteredSalary:any=[]
   nodatafound:boolean=false
+  currentPage: number = 1;
+  itemsPerPage: number = 1;
   employeeService=inject(EmployeeService)
   ngOnInit(){
     this.getSalaryInfo()
@@ -36,11 +38,30 @@ export class MySalaryComponent {
     .includes(this.searchId)
 );
 
-  if (this.filteredSalary.length === 0) {
-    this.nodatafound = true;
-  } else {
-    this.nodatafound = false;
-  }
+  this.nodatafound = this.filteredSalary.length === 0;
+    this.currentPage = 1;
 }
+
+get totalPages() {
+    return Math.ceil(this.filteredSalary.length / this.itemsPerPage) || 1;
+  }
+
+  nextPage() {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+    }
+  }
+
+  prevPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+    }
+  }
+
+  get paginatedSalary() {
+    const start = (this.currentPage - 1) * this.itemsPerPage;
+    const end = start + this.itemsPerPage;
+    return this.filteredSalary.slice(start, end);
+  }
 
 }

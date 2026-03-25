@@ -17,6 +17,8 @@ export class MyLeaveComponent {
   filteredLeave: any = [];
   nodatafound: boolean = false;
   leaves: any = [];
+  currentPage: number = 1;
+  itemsPerPage: number = 1;
 
   ngOnInit() {
     this.getLeaveInfo();
@@ -35,11 +37,8 @@ export class MyLeaveComponent {
         .includes(this.searchId.toLowerCase()),
     );
 
-    if (this.filteredLeave.length === 0) {
-      this.nodatafound = true;
-    } else {
-      this.nodatafound = false;
-    }
+    this.nodatafound = this.filteredLeave.length === 0;
+    this.currentPage = 1;
   }
 
   getLeaveInfo() {
@@ -47,9 +46,32 @@ export class MyLeaveComponent {
       console.log('dsdfdf', res);
       this.leaves = Object.values(res.leave);
       this.filteredLeave = res.leave;
+      this.currentPage = 1;
     });
+  }
+
+  get totalPages() {
+    return Math.ceil(this.filteredLeave.length / this.itemsPerPage) || 1;
+  }
+
+  nextPage() {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+    }
+  }
+
+  prevPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+    }
   }
   addNewLeave() {
     this.router.navigate(['/employee/add-my-leave-form']);
+  }
+
+  get paginatedLeave() {
+    const start = (this.currentPage - 1) * this.itemsPerPage;
+    const end = start + this.itemsPerPage;
+    return this.filteredLeave.slice(start, end);
   }
 }
