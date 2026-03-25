@@ -20,13 +20,17 @@ export class LoginComponent {
   private formBuilder = inject(FormBuilder);
   private authService = inject(AuthService);
   private router = inject(Router);
+  errorMessage: string = '';
   route = inject(ActivatedRoute);
   showPassword: boolean = false;
   user: any;
   setUser: any;
   loginForm = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.min(1), Validators.max(6)]],
+    password: [
+      '',
+      [Validators.required, Validators.minLength(1)],
+    ],
   });
   ngOnInit() {
     this.user = this.authService.getUser();
@@ -34,20 +38,23 @@ export class LoginComponent {
   login() {
     this.authService
       .login(this.loginForm.value.email!, this.loginForm.value.password!)
-      .subscribe((res: any) => {
-        if (res) {
-          alert(res.message);
-          const token = localStorage.setItem('token', res.token);
-          console.log(res.user);
-          const user = localStorage.setItem('user', JSON.stringify(res.user));
-          if (res.user.role === 'admin') {
-            this.router.navigateByUrl('/admin/dashboard');
-          } else {
-            this.router.navigateByUrl('/employee/employee-dashboard');
+      .subscribe({
+        next: (res: any) => {
+          if (res) {
+            alert(res.message);
+            localStorage.setItem('token', res.token);
+            localStorage.setItem('user', JSON.stringify(res.user));
+
+            if (res.user.role === 'admin') {
+              this.router.navigateByUrl('/admin/dashboard');
+            } else {
+              this.router.navigateByUrl('/employee/employee-dashboard');
+            }
           }
-        } else {
-          console.error('There is some error');
-        }
+        },
+        error: (err) => {
+          this.errorMessage = err.error.message;
+        },
       });
   }
   goToForgetPassword() {

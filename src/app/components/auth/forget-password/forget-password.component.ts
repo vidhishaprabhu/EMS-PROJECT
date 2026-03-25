@@ -29,7 +29,11 @@ export class ForgetPasswordComponent {
 
   forgetPassword() {
     this.authService
-      .forgetPassword(this.forgetPasswordForm.value.email!,this.forgetPasswordForm.value.newPassword!, this.forgetPasswordForm.value.confirmPassword!)
+      .forgetPassword(
+        this.forgetPasswordForm.value.email!,
+        this.forgetPasswordForm.value.newPassword!,
+        this.forgetPasswordForm.value.confirmPassword!,
+      )
       .subscribe({
         next: (res: any) => {
           alert(res.message);

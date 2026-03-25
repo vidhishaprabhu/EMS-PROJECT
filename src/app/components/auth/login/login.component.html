@@ -57,6 +57,10 @@
         </div>
 
         <div class="d-grid gap-2">
+          @if (errorMessage) {
+            <p  class="text-danger text-center small">{{ errorMessage }}</p>
+          }
+           
           <button
             type="submit"
             class="btn btn-danger py-2 fw-bolder"
