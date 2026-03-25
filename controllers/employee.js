@@ -147,6 +147,40 @@ exports.getEmployeeById = async (req, res) => {
     return res.status(500).json({ message: "Internal server error" });
   }
 };
+exports.forgetPassword = async (req, res) => {
+  try {
+    const { email, newPassword, confirmPassword } = req.body;
+
+    if (!email || !newPassword || !confirmPassword) {
+      return res.status(400).json({ message: "All fields are required" });
+    }
+
+    if (newPassword !== confirmPassword) {
+      return res.status(400).json({ message: "Passwords do not match" });
+    }
+
+    if (newPassword.length < 6) {
+      return res.status(400).json({ message: "Password must be at least 6 characters" });
+    }
+
+    let user = await Admin.findOne({ email });
+    if (!user) {
+      user = await Employee.findOne({ email });
+    }
+
+    if (!user) {
+      return res.status(404).json({ message: "Email not found" });
+    }
+
+    user.password = await bcrypt.hash(newPassword, 10);
+    await user.save();
+
+    return res.status(200).json({ message: "Password reset successfully" });
+
+  } catch (error) {
+    return res.status(500).json({ message: "Internal server error" });
+  }
+};
 exports.changePasswordEmployee = async (req, res) => {
   try {
     const { currentPassword, newPassword, confirmPassword } = req.body;
@@ -187,40 +221,6 @@ exports.changePasswordEmployee = async (req, res) => {
     return res
       .status(200)
       .json({ message: "Password changed successfully", employee: employee });
-  } catch (error) {
-    return res.status(500).json({ message: "Internal server error" });
-  }
-};
-exports.forgetPasswordEmployee = async (req, res) => {
-  try {
-    const { email, newPassword, confirmPassword } = req.body;
-    if (!email || !newPassword || !confirmPassword) {
-      return res.status(400).json({ message: "All fields are required" });
-    }
-
-    if (newPassword !== confirmPassword) {
-      return res
-        .status(400)
-        .json({ message: "New password and confirm password do not match" });
-    }
-
-    if (newPassword.length < 6) {
-      return res
-        .status(400)
-        .json({ message: "New password must be at least 6 characters" });
-    }
-
-    const employee = await Employee.findOne({ email });
-    if (!employee) {
-      return res
-        .status(404)
-        .json({ message: `Employee with ${email} not found` });
-    }
-
-    employee.password = await bcrypt.hash(newPassword, 10);
-    await employee.save();
-
-    return res.status(200).json({ message: "Password reset successfully"});
   } catch (error) {
     return res.status(500).json({ message: "Internal server error" });
   }
