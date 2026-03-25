@@ -58,7 +58,7 @@ exports.createEmployee = async (req, res) => {
 };
 exports.login = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { email, password,rememberMe} = req.body;
 
     let user = await Admin.findOne({ email });
     let role = "admin";
@@ -84,8 +84,10 @@ exports.login = async (req, res) => {
         email: user.email,
         role: role,
       },
-      process.env.JWT_SECRET,
-      { expiresIn: "1h" },
+       process.env.JWT_SECRET,
+      {
+        expiresIn: rememberMe ? "7d" : "1h", 
+      }
     );
 
     return res.status(200).json({
