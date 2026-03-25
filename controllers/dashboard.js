@@ -11,11 +11,29 @@ exports.adminDashboard = async (req, res) => {
     const totalPendingLeaves = await Leave.countDocuments({
       status: "Pending",
     });
-    const result = await Salary.aggregate([
-      { $group: { _id: null, totalSalary: { $sum: "$total" } } },
-    ]);
+    const now = new Date();
+const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);     
+const endOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0);  month
 
-    const totalSalary = result[0]?.totalSalary || 0;
+const result = await Salary.aggregate([
+  {
+    $match: {
+      createdAt: {
+        $gte: startOfMonth,  
+        $lte: endOfMonth    
+      }
+    }
+  },
+  {
+    $group: {
+      _id: null,
+      totalSalary: { $sum: "$total" }
+    }
+  }
+]);
+
+const totalSalary = result.length > 0 ? result[0].totalSalary : 0;
+
 
     return res.status(200).json({
       totalEmp,
