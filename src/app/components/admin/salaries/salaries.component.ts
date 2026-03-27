@@ -58,6 +58,7 @@ export class SalariesComponent {
     this.adminService.addSalaries(this.salaryForm.value.employee!,this.salaryForm.value.basic!,this.salaryForm.value.bonus!,this.salaryForm.value.department!,this.salaryForm.value.deduction!,this.salaryForm.value.total!).subscribe((res:any)=>{
       if(res){
         alert(res.message)
+        this.salaryForm.reset();
       }
       else{
         console.error('There is some error');

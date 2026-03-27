@@ -19,5 +19,12 @@ export class SidebarComponent {
       console.log('userRole:', this.userRole);
     }
   }
+  closeSidebar() {
+    const sidebarElement = document.getElementById('sidebarMenu');
+    if (sidebarElement && window.innerWidth < 992) {
+      const closeBtn = sidebarElement.querySelector('.btn-close') as HTMLElement;
+      closeBtn?.click();
+    }
+  }
 
 }

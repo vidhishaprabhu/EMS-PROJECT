@@ -1,0 +1,49 @@
+<section class="container my-5">
+  <h2 class="text-center mb-4">Payslip</h2>
+
+  <div id="pdf" width="600px" class="mb-5 p-3">
+    <div class="col-12">
+      <div class="card rounded-3 shadow-sm border-2">
+        <div class="card-header" style="background-color: rgb(158, 243, 127)" ;>
+          <div class="border-bottom border-dark pb-2 mb-6">
+            <div class="d-flex justify-content-between align-items-end">
+              <p class="fw-bold fs-2 mb-0 lh-1">EMS PORTAL</p>
+              <p class="mb-0">For the month of</p>
+            </div>
+
+            <div class="d-flex justify-content-between">
+              <p class="mb-0 text-secondary">Payslip & Earnings Statement</p>
+              <p class="mb-0 fw-bold text-secondary">{{ today | date: "MMMM yyyy" }}</p>
+            </div>
+          </div>
+          <div class="border-bottom pb-2 mb-6">
+            <div class="border-bottom border-dark pb-2 mb-4">
+              <div class="d-flex justify-content-between">
+                <div class="d-flex flex-column">
+                  <p class="mb-0 small text-uppercase fw-bold">Employee ID</p>
+                  <p class="mb-0 text-secondary fw-bold">{{ employees._id }}</p>
+                </div>
+
+                <div class="d-flex flex-column">
+                  <p class="mb-0 small text-uppercase fw-bold">Department</p>
+                  <p class="mb-0 text-secondary fw-bold">{{ departments.name }}</p>
+                </div>
+                <div class="d-flex flex-column">
+                  <p class="mb-0 small text-uppercase fw-bold">Position</p>
+                  <p class="mb-0 text-secondary fw-bold">{{ employees.position }}</p>
+                </div>
+                
+                <div class="d-flex flex-column text-end">
+                  <p class="mb-0 small text-uppercase fw-bold">Pay Date</p>
+                  <p class="mb-0 text-secondary fw-bold">{{ salaries[0].createdAt | date }}</p>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body"></div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -19,6 +19,7 @@ import { MyLeaveComponent } from './components/employee/my-leave/my-leave.compon
 import { AddMyleaveFormComponent } from './components/employee/add-myleave-form/add-myleave-form.component';
 import { MySalaryComponent } from './components/employee/my-salary/my-salary.component';
 import { ForgetPasswordComponent } from './components/auth/forget-password/forget-password.component';
+import { PaySlipComponent } from './components/employee/pay-slip/pay-slip.component';
 
 export const routes: Routes = [
   {
@@ -151,6 +152,16 @@ export const routes: Routes = [
           {
             path: 'change-password',
             component: ChangePasswordComponent,
+            data: { role: 'employee' },
+          },
+        ],
+      },
+      {
+        path: 'employee',
+        children: [
+          {
+            path: 'view-pay-slip',
+            component: PaySlipComponent,
             data: { role: 'employee' },
           },
         ],

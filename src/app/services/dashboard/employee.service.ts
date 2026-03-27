@@ -28,4 +28,17 @@ export class EmployeeService {
     const body={employee,fromDate,toDate,leaveType,reason}
     return this.http.post(`${environment.apiUrl}/leave`,body);
   }
+  getEmployeeDashboard(){
+    return this.http.get(`${environment.apiUrl}/employee-dashabord`)
+  }
+  getLeaveBalance(){
+    return this.http.get(`${environment.apiUrl}/employee-dashabord/total-leave-balance`)
+  }
+  getDeptInfo(){
+    return this.http.get(`${environment.apiUrl}/department/get-department`)
+  }
+  addBankDetails(accountNumber:string,bankName:string,ifscCode:string,branch:string){
+    const body={accountNumber,bankName,ifscCode,branch}
+    return this.http.post(`${environment.apiUrl}/employee/add-bank-details`,body)
+  }
 }

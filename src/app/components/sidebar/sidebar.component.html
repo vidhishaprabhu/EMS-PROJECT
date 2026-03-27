@@ -1,113 +1,188 @@
-<div
-  class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark vh-100"
-  style="width: 280px"
+<style>
+  /* 1. Base Sidebar Styling */
+  #sidebarMenu {
+    /* Critical Fix: vh-100 makes it exactly the height of the screen */
+    height: 100vh !important; 
+    
+    /* Sticky ensures it stays visible even when the Leaves list is very long */
+    position: sticky; 
+    top: 0;
+    
+    /* Allow the sidebar itself to scroll if you have too many menu items */
+    overflow-y: auto; 
+    
+    background: #1e293b !important;
+    display: flex;
+    flex-direction: column;
+    z-index: 1030;
+  }
+
+  /* 2. Brand Header */
+  .brand-wrapper {
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    margin-bottom: 1.5rem;
+  }
+  
+  .brand-text {
+    letter-spacing: 1px;
+    background: linear-gradient(90deg, #ffffff, #9ef37f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* 3. Navigation Links */
+  .nav-link {
+    color: #94a3b8 !important; /* Muted slate color */
+    padding: 12px 18px !important;
+    border-radius: 10px !important;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    margin: 4px 0;
+  }
+
+  .nav-link i {
+    width: 25px;
+    font-size: 1.1rem;
+    transition: transform 0.2s ease;
+  }
+
+  /* 4. Active Link State */
+  .active-link {
+    background: rgba(158, 243, 127, 0.15) !important; /* Soft green glow */
+    color: #9ef37f !important; /* Mint Green */
+    font-weight: 600 !important;
+    position: relative;
+  }
+
+  .active-link::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    height: 60%;
+    width: 4px;
+    background: #9ef37f;
+    border-radius: 0 4px 4px 0;
+  }
+
+  /* 5. Hover State */
+  .nav-link:hover:not(.active-link) {
+    background: rgba(255, 255, 255, 0.05) !important;
+    color: #ffffff !important;
+    transform: translateX(5px);
+  }
+
+  .nav-link:hover i {
+    transform: scale(1.1);
+  }
+
+  /* 6. Section Dividers */
+  hr {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 1.5rem 0;
+  }
+
+  /* 7. Mobile Navbar (The top bar on small screens) */
+  .navbar {
+    background: #1e293b !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* 8. Responsive Layout Management */
+  @media (min-width: 992px) {
+    body {
+      padding-left: 280px;
+      background-color: #f8fafc; /* Light gray background for the main content */
+    }
+  }
+</style>
+<nav class="navbar navbar-dark bg-dark d-lg-none p-2 sticky-top shadow-sm" style="height: 100%;">
+  <button class="btn btn-outline-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu">
+    <i class="fa fa-bars me-2"></i> 
+  </button>
+  <span class="text-white fw-bold">EMS Portal</span>
+</nav>
+
+<div 
+  class="offcanvas-lg offcanvas-start text-white bg-dark flex-column flex-shrink-0 p-3" 
+  id="sidebarMenu" 
+  style="width: 280px;height: 100%;"
 >
-  <a
-    href="/"
-    class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"
-  >
-    <svg class="bi me-2" width="40" height="32">
-      <use xlink:href="#bootstrap"></use>
-    </svg>
-    <span class="fs-2 fw-bolder" style="color:white">EMS Portal</span>
-  </a>
+  <div class="d-flex align-items-center justify-content-between mb-3 mb-md-0 me-md-auto text-white">
+    <a href="/" class="d-flex align-items-center text-white text-decoration-none">
+      <i class="fa fa-id-card-o me-2 fs-2"></i>
+      <span class="fs-2 fw-bolder">EMS Portal</span>
+    </a>
+    <button type="button" class="btn-close btn-close-white d-lg-none" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu"></button>
+  </div>
+  
   <hr />
+
   <ul class="nav nav-pills flex-column mb-auto">
     @if (userRole === "admin") {
       <li class="nav-item">
-        <a routerLink="/admin/dashboard" class="nav-link fs-5 fw-bolder" aria-current="page" routerLinkActive="active-link" >
-          
-          <i class="fa fa-tachometer me-2"></i> Dashboard
+        <a routerLink="/admin/dashboard" routerLinkActive="active-link" class="nav-link text-white fs-5 fw-bolder mb-2" (click)="closeSidebar()">
+          <i class="fa fa-tachometer me-3"></i> Dashboard
         </a>
       </li>
       <li>
-        <a routerLink="/admin/get-all-employee" class="nav-link text-white fs-5 fw-bolder" routerLinkActive="active-link">
-          
-        <i class="fa fa-user-circle me-2"></i>  Employees
+        <a routerLink="/admin/get-all-employee" routerLinkActive="active-link" class="nav-link text-white fs-5 fw-bolder mb-2" (click)="closeSidebar()">
+          <i class="fa fa-user-circle me-3"></i> Employees
         </a>
       </li>
       <li>
-        <a routerLink="/admin/get-all-department" class="nav-link text-white fs-5 fw-bolder" routerLinkActive="active-link">
-          
-          <i class="fa fa-building-o me-2"></i> Departments
+        <a routerLink="/admin/get-all-department" routerLinkActive="active-link" class="nav-link text-white fs-5 fw-bolder mb-2" (click)="closeSidebar()">
+          <i class="fa fa-building-o me-3"></i> Departments
         </a>
       </li>
       <li>
-        <a routerLink="/admin/get-all-leave" class="nav-link text-white fs-5 fw-bolder" routerLinkActive="active-link">
-          
-        <i class="fa fa-plane me-2"></i>  Leaves
+        <a routerLink="/admin/get-all-leave" routerLinkActive="active-link" class="nav-link text-white fs-5 fw-bolder mb-2" (click)="closeSidebar()">
+          <i class="fa fa-plane me-3"></i> Leaves
         </a>
       </li>
       <li>
-        <a routerLink="/admin/add-salaries" class="nav-link text-white fs-5 fw-bolder" routerLinkActive="active-link">
-         
-        <i class="fa fa-rupee me-2"></i>  Salaries
+        <a routerLink="/admin/add-salaries" routerLinkActive="active-link" class="nav-link text-white fs-5 fw-bolder mb-2" (click)="closeSidebar()">
+          <i class="fa fa-rupee me-3"></i> Salaries
         </a>
       </li>
       <li>
-        <a routerLink="/admin/change-password" class="nav-link text-white fs-5 fw-bolder" routerLinkActive="active-link">
-         
-        <i class="fa fa-gear me-2" style="color:white"></i>  Settings
-        </a>
-      </li>
+      <a routerLink="/admin/change-password" routerLinkActive="active-link" class="nav-link text-white fs-5 fw-bolder mb-2" (click)="closeSidebar()">
+        <i class="fa fa-gear me-3"></i> Settings
+      </a>
+    </li>
     }
+
     @if (userRole === "employee") {
-      <li>
-        <a
-          routerLink="/employee/employee-dashboard"
-          class="nav-link text-white fs-5 fw-bolder"
-        >
-          
-          <i class="fa fa-tachometer me-2"></i> Dashboard
+      <li class="nav-item">
+        <a routerLink="/employee/employee-dashboard" routerLinkActive="active-link" class="nav-link text-white fs-5 fw-bolder mb-2" (click)="closeSidebar()">
+          <i class="fa fa-tachometer me-3"></i> Dashboard
         </a>
       </li>
       <li>
-        <a
-          routerLink="/employee/my-profile"
-          class="nav-link text-white fs-5 fw-bolder"
-        >
-          
-          <i class="fa fa-user-circle me-2"></i> My Profile
+        <a routerLink="/employee/my-profile" routerLinkActive="active-link" class="nav-link text-white fs-5 fw-bolder mb-2" (click)="closeSidebar()">
+          <i class="fa fa-user-circle me-3"></i> My Profile
         </a>
       </li>
       <li>
-        <a
-          routerLink="/employee/my-leaves"
-          class="nav-link text-white fs-5 fw-bolder"
-        >
-          
-        <i class="fa fa-plane me-2"></i>  Leave
+        <a routerLink="/employee/my-leaves" routerLinkActive="active-link" class="nav-link text-white fs-5 fw-bolder mb-2" (click)="closeSidebar()">
+          <i class="fa fa-plane me-3"></i> My Leaves
         </a>
       </li>
       <li>
-        <a
-          routerLink="/employee/get-my-salary"
-          class="nav-link text-white fs-5 fw-bolder"
-        >
-          
-         <i class="fa fa-rupee me-2"></i> Salary
+        <a routerLink="/employee/get-my-salary" routerLinkActive="active-link" class="nav-link text-white fs-5 fw-bolder mb-2" (click)="closeSidebar()">
+          <i class="fa fa-rupee me-3"></i> My Salary
         </a>
       </li>
       <li>
-        <a
-          routerLink="/employee/change-password"
-          class="nav-link text-white fs-5 fw-bolder"
-        >
-          <i class="fa fa-gear me-2" style="color:white"></i>
-          Settings
-        </a>
-      </li>
-      
+      <a routerLink="/employee/change-password" routerLinkActive="active-link" class="nav-link text-white fs-5 fw-bolder mb-2" (click)="closeSidebar()">
+        <i class="fa fa-gear me-3"></i> Settings
+      </a>
+    </li>
     }
-    <li>
-        <a
-          routerLink="/login"
-          class="nav-link text-white fs-5 fw-bolder"
-        >
-          <i class="fa fa-sign-in me-2" style="color:white"></i>
-          Login
-        </a>
-      </li>
+
+    <hr />
+    
+    
   </ul>
-  <hr />
 </div>
