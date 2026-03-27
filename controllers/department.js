@@ -1,4 +1,5 @@
 const Department = require("../models/Department");
+const Employee = require("../models/Employee");
 
 exports.createDepartment = async (req, res) => {
   try {
@@ -29,18 +30,25 @@ exports.getDepartment = async (req, res) => {
 };
 exports.getDeptInfo = async (req, res) => {
   try {
-    const department = await Department.findById(req.user.id);
-    if (!department) {
-      return res.status(404).json({ message: "Department not found" });
-    } else {
-      return res
-        .status(200)
-        .json({
-          message: `Department fetched successfully`,
-          department: department,
-        });
+    
+    const user = await Employee.findById(req.user.id);
+    
+    if (!user || !user.department) {
+      return res.status(404).json({ message: "User or Department reference not found" });
     }
+
+    const department = await Department.findById(user.department);
+
+    if (!department) {
+      return res.status(404).json({ message: "Department details not found" });
+    }
+
+    return res.status(200).json({
+      message: "Department fetched successfully",
+      department: department, // This will now be the { _id, name: 'IT', ... } object
+    });
   } catch (error) {
+    console.error("Error:", error);
     return res.status(500).json({ message: "Internal Server error" });
   }
 };

@@ -39,13 +39,31 @@ exports.getSalary = async (req, res) => {
 };
 exports.getSalaryInfo = async (req, res) => {
   try {
-    const salary = await Salary.find({ employee: req.user.id }); 
+    // console.log("hgkghhhhhhh")
+    const employeeId=req.user.id
+    const now = new Date();
+
+    const firstDayOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
+    const firstDayOfNextMonth = new Date(
+      now.getFullYear(),
+      now.getMonth() + 1,
+      1
+    );
+
+    const salary = await Salary.find({
+      employee: employeeId,
+      createdAt: {
+        $gte: firstDayOfMonth,
+        $lt: firstDayOfNextMonth
+      }
+    });
+   
     if (!salary || salary.length === 0) {
       return res.status(404).json({ message: "Salary not found" });
     } else {
       return res
         .status(200)
-        .json({ message: `Salary fetched successfully`, salary: salary });
+        .json({ message: `Salary fetched successfully`, salary: salary});
     }
   } catch (error) {
     return res.status(500).json({ message: "Internal server error" });

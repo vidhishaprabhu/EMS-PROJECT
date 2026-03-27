@@ -18,11 +18,23 @@ const employeeSchema = mongoose.Schema(
     department: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Department",
-      required:true
+      required: true,
+    },
+    bankDetails: {
+      accountNumber: { type: String },
+      bankName: { type: String },
+      ifscCode: { type: String },
+      branch: { type: String },
+    },
+    leaveBalance: {
+      sick: { type: Number, default: 10 },
+      casual: { type: Number, default: 12 },
+      privilege: { type: Number, default: 15 },
+      unpaid: { type: Number, default: 0 },
     },
     position: {
       type: String,
-      required:true
+      required: true,
     },
     role: {
       type: String,
@@ -30,16 +42,16 @@ const employeeSchema = mongoose.Schema(
     },
     gender: {
       type: String,
-      enum: ['Male', 'Female', 'other'],   
-      required: true
+      enum: ["Male", "Female", "other"],
+      required: true,
     },
     dateOfBirth: {
       type: Date,
-      required: true
+      required: true,
     },
     image: {
       type: String,
-      required:true
+      required: true,
     },
   },
   {
