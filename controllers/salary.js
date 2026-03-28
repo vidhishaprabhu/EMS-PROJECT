@@ -82,7 +82,7 @@ exports.getSalaryInfo = async (req, res) => {
     $lt: firstDayOfNextMonth
   }
 
-    })
+    }).sort({createdAt:-1})
    console.log('Salary found:', salary);
     if (!salary || salary.length === 0) {
       return res.status(404).json({ message: "Salary not found" });
