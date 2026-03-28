@@ -22,6 +22,7 @@ export class PaySlipComponent {
   getSalaryInfo(){
     this.employeeService.getSalaryInfo().subscribe((res:any)=>{
       this.salaries=res.salary
+      console.log("Income tax",this.salaries?.[0]?.incomeTax )
     })
   }
   getEmployeeInfo(){
@@ -35,4 +36,12 @@ export class PaySlipComponent {
       console.log("department ",this.departments)
     })
   }
+  get totalEarnings(){
+    return this.salaries[0].basic + this.salaries[0].bonus
+  }
+
+  get totalDeductions(){
+    return this.salaries[0].pf + this.salaries[0].professionalTax + this.salaries[0].incomeTax
+  }
+  
 }

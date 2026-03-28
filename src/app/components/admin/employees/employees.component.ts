@@ -86,4 +86,9 @@ export class EmployeesComponent {
     const end = start + this.itemsPerPage;
     return this.filteredEmployee.slice(start, end);
   }
+
+  routeAddBankDetails(id:string){
+    this.router.navigate(['admin/update-bank-details',id]);
+
+  }
 }

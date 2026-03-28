@@ -37,8 +37,5 @@ export class EmployeeService {
   getDeptInfo(){
     return this.http.get(`${environment.apiUrl}/department/get-department`)
   }
-  addBankDetails(accountNumber:string,bankName:string,ifscCode:string,branch:string){
-    const body={accountNumber,bankName,ifscCode,branch}
-    return this.http.post(`${environment.apiUrl}/employee/add-bank-details`,body)
-  }
+  
 }

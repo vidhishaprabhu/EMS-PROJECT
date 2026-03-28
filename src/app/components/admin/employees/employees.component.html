@@ -98,36 +98,69 @@
                   <td>{{ employee.position }}</td>
                   <td>
                     <span>
-                      <button
-                        class="btn btn-primary me-2 fw-bolder"
-                        (click)="viewEmployee(employee._id)"
-                      >
-                        View
-                      </button>
-                      <button
-                        class="btn btn-info me-2 fw-bolder text-white"
-                        (click)="editEmployee(employee._id)"
-                      >
-                        Edit
-                      </button>
-                      <button
-                        class="btn btn-danger me-2 fw-bolder"
-                        (click)="deleteEmployee(employee._id)"
-                      >
-                        Delete
-                      </button>
-                      <button
-                        class="btn btn-success me-2 fw-bolder"
-                        (click)="viewSalary(employee._id)"
-                      >
-                        Salary
-                      </button>
-                      <button
-                        class="btn btn-danger me-2 fw-bolder"
-                        (click)="viewLeave(employee._id)"
-                      >
-                        Leave
-                      </button>
+                      <div class="dropdown">
+                        <button
+                          class="btn btn-secondary dropdown-toggle"
+                          type="button"
+                          data-bs-toggle="dropdown"
+                          aria-expanded="false"
+                        >
+                          Actions
+                        </button>
+                        <ul class="dropdown-menu dropdown-scroll">
+                          <li>
+                            <a
+                              class="dropdown-item"
+                              (click)="viewEmployee(employee._id)"
+                              ><i class="fa fa-eye me-2 text-primary"></i>
+                              View</a
+                            >
+                          </li>
+                          <li>
+                            <a
+                              class="dropdown-item"
+                              (click)="editEmployee(employee._id)"
+                              ><i class="fa fa-edit me-2 text-info"></i> Edit</a
+                            >
+                          </li>
+                          <li>
+                            <a
+                              class="dropdown-item"
+                              (click)="viewSalary(employee._id)"
+                              ><i
+                                class="fa fa-money-bill me-2 text-success"
+                              ></i>
+                              Salary</a
+                            >
+                          </li>
+                          <li>
+                            <a
+                              class="dropdown-item"
+                              (click)="viewLeave(employee._id)"
+                              ><i
+                                class="fa fa-calendar-minus me-2 text-danger"
+                              ></i>
+                              Leave</a
+                            >
+                          </li>
+                          <li>
+                            <a
+                              class="dropdown-item"
+                              (click)="routeAddBankDetails(employee._id)"
+                              ><i class="fa fa-university me-2 text-danger"></i>
+                              Bank Details</a
+                            >
+                          </li>
+                          <li><hr class="dropdown-divider" /></li>
+                          <li>
+                            <a
+                              class="dropdown-item text-danger"
+                              (click)="deleteEmployee(employee._id)"
+                              ><i class="fa fa-trash me-2"></i> Delete</a
+                            >
+                          </li>
+                        </ul>
+                      </div>
                     </span>
                   </td>
                 </tr>

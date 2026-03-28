@@ -55,8 +55,8 @@ export class AdminService {
     return this.http.post(`${environment.apiUrl}/department`,body);
   }
 
-  addSalaries(employee:string,basic:string,bonus:string,department:string,deduction:string,total:string){
-    const body={employee,basic,bonus,department,deduction,total}
+  addSalaries(employee:string,basic:string,bonus:string,department:string,deduction:string){
+    const body={employee,basic,bonus,department,deduction}
     return this.http.post(`${environment.apiUrl}/salary`,body);
   }
   getEmployeeById(id: string) {
@@ -118,5 +118,8 @@ export class AdminService {
   updateStatusInLeave(id:string,status:string){
     return this.http.patch(`${environment.apiUrl}/leave/update-status/${id}`,{status})
   }
-  
+  updateBankDetails(id:string,accountNumber:string,bankName:string,ifscCode:string,branch:string){
+    const body={accountNumber,bankName,ifscCode,branch}
+    return this.http.put(`${environment.apiUrl}/admin/add-bank-details/${id}`,body)
+  }
 }

@@ -136,6 +136,48 @@
               </div>
               <div class="col-md-6">
                 <div class="mb-3">
+                  <label for="pf" class="form-label">PF</label>
+                  <span class="text-danger">*</span>
+                  <input
+                    type="number"
+                    formControlName="pf"
+                    class="form-control"
+                    id="pf"
+                    placeholder="PF"
+                  />
+                  
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="professionalTax" class="form-label">Professional Tax</label>
+                  <span class="text-danger">*</span>
+                  <input
+                    type="number"
+                    formControlName="professionalTax"
+                    class="form-control"
+                    id="professionalTax"
+                    placeholder="Professional Tax"
+                  />
+                  
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="incomeTax" class="form-label">Income Tax</label>
+                  <span class="text-danger">*</span>
+                  <input
+                    type="number"
+                    formControlName="incomeTax"
+                    class="form-control"
+                    id="incomeTax"
+                    placeholder="Income Tax"
+                  />
+                  
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
                   <label for="total" class="form-label">Total</label>
                   <span class="text-danger">*</span>
                   <input
@@ -144,25 +186,15 @@
                     class="form-control"
                     id="total"
                     placeholder="Total"
-                    readonly
                   />
-                  @if (
-                    salaryForm.get("total")?.invalid &&
-                    salaryForm.get("total")?.touched
-                  ) {
-                    <div>
-                      <span class="text-danger"
-                        >Total field is required</span
-                      >
-                    </div>
-                  }
+                  
                 </div>
               </div>
               <div class="col-md-12 mt-3">
                 <button
                   [disabled]="salaryForm.invalid"
                   class="btn btn-danger w-100 fw-bolder"
-                  (click)="addSalary()"
+                  (click)="createSalary()"
                 >
                   Add Salary
                 </button>

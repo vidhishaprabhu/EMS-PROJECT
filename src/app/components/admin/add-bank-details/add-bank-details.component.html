@@ -1,1 +1,86 @@
-<p>add-bank-details works!</p>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <div class="card shadow">
+        <div class="card-body">
+          
+
+          <form [formGroup]="addBankDetailsForm">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="accountNumber" class="form-label">Account Number</label>
+                  <span class="text-danger">*</span>
+                  <input
+                    type="text"
+                    formControlName="accountNumber"
+                    class="form-control"
+                    id="accountNumber"
+                    placeholder="Account Number"
+                  />
+                  
+                </div>
+                
+              </div>
+
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="bankName" class="form-label">Bank Name</label>
+                  <span class="text-danger">*</span>
+                  <input
+                    type="text"
+                    formControlName="bankName"
+                    class="form-control"
+                    id="bankName"
+                    placeholder="Bank Name"
+                  />
+                  
+                </div>
+                
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="ifscCode" class="form-label">IFSC Code</label>
+                  <span class="text-danger">*</span>
+                  <input
+                    type="text"
+                    formControlName="ifscCode"
+                    class="form-control"
+                    id="ifscCode"
+                    placeholder="IFSC Code"
+                  />
+                  
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="branch" class="form-label">Branch Name</label>
+                  <span class="text-danger">*</span>
+                  <input
+                    type="text"
+                    formControlName="branch"
+                    class="form-control"
+                    id="branch"
+                    placeholder="Branch Name"
+                  />
+                  
+                </div>
+              </div>
+              <div class="col-md-12 mt-3">
+                  <button
+                    class="btn btn-danger w-100 fw-bolder"
+                    [disabled]="addBankDetailsForm.invalid"
+                    (click)="updateBankDetails()"
+                  >
+                    Add Bank Details
+                  </button>
+                </div>
+              
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
