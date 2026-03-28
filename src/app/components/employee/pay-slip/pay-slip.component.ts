@@ -1,10 +1,13 @@
 import { Component, inject } from '@angular/core';
 import { EmployeeService } from '../../../services/dashboard/employee.service';
 import { DatePipe } from '@angular/common';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-pay-slip',
-  imports: [DatePipe],
+  imports: [DatePipe,RouterLink],
   templateUrl: './pay-slip.component.html',
   styleUrl: './pay-slip.component.css'
 })
@@ -42,6 +45,28 @@ export class PaySlipComponent {
 
   get totalDeductions(){
     return this.salaries[0].pf + this.salaries[0].professionalTax + this.salaries[0].incomeTax
+  }
+
+  generatePDF():void{
+    // console.log(this.admissionForm.value);
+    const content=document.getElementById('pdf');
+    if(content){
+      content.style.display='block';
+      html2canvas(content).then((canvas)=>{
+        const imgData=canvas.toDataURL('image/png');
+        const pdf=new jsPDF('p','mm','a4');
+        const imgProps=pdf.getImageProperties(imgData);
+        const pdfWidth=pdf.internal.pageSize.getWidth();
+        const pdfHeight=(imgProps.height * pdfWidth) / imgProps.width;
+        pdf.addImage(imgData,'PNG',0,0,pdfWidth,pdfHeight);
+        pdf.save(`${this.employees.name}-payslip.pdf`);
+
+       
+      })
+      content.style.display='none';
+    }
+    
+    
   }
   
 }
