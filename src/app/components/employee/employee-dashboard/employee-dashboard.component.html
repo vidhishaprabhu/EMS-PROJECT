@@ -12,7 +12,8 @@
       <div>
         <h5 class="mb-0 fw-bold text-dark">Welcome back, {{ user?.name }}</h5>
         <i class="fa fa-user fs-3 mt-2" aria-hidden="true"></i>
-        <p class="mt-2 text-dark">Employee ID: {{ employees._id }}</p>
+        <p class="mt-2 text-dark fw-bolder">Employee ID: {{ employees._id }}</p>
+        <button class="btn btn-danger fw-bold" routerLink="/admin/view-bank-details"><i class="fa fa-eye"></i> View Bank Details</button>
         <small class="text-muted"></small>
       </div>
     </div>
@@ -55,7 +56,7 @@
         </div>
         <div class="card-body">
           <p class="fs-2 fw-bold text-warning">{{ pendingLeaves }}</p>
-          <p class="mt-3 text-warning">Successfully Approved</p>
+          <p class="mt-3 text-warning">Yet to Approve</p>
         </div>
       </div>
     </div>
@@ -152,8 +153,8 @@
               </div>
             </div>
             <div class="col-auto fw-bold fs-6">
-              {{ leaveData?.privilege?.taken }}/{{
-                leaveData?.privilege?.total
+              {{ leaveData?.unpaid?.taken }}/{{
+                leaveData?.unpaid?.total
               }}
             </div>
             

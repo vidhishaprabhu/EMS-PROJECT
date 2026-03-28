@@ -21,6 +21,7 @@ import { MySalaryComponent } from './components/employee/my-salary/my-salary.com
 import { ForgetPasswordComponent } from './components/auth/forget-password/forget-password.component';
 import { PaySlipComponent } from './components/employee/pay-slip/pay-slip.component';
 import { AddBankDetailsComponent } from './components/admin/add-bank-details/add-bank-details.component';
+import { ViewBankDetailsComponent } from './components/admin/view-bank-details/view-bank-details.component';
 
 export const routes: Routes = [
   {
@@ -128,6 +129,16 @@ export const routes: Routes = [
           {
             path: 'update-bank-details/:id',
             component: AddBankDetailsComponent,
+            data: { role: 'admin' },
+          },
+        ],
+      },
+      {
+        path: 'admin',
+        children: [
+          {
+            path: 'view-bank-details',
+            component: ViewBankDetailsComponent,
             data: { role: 'admin' },
           },
         ],

@@ -3,13 +3,14 @@
     <div class="col-md-10">
       <div class="card shadow">
         <div class="card-body">
-          
-
+          <h5 class="card-title fw-bold mb-4">Add Bank Details</h5>
           <form [formGroup]="addBankDetailsForm">
             <div class="row">
               <div class="col-md-6">
                 <div class="mb-3">
-                  <label for="accountNumber" class="form-label">Account Number</label>
+                  <label for="accountNumber" class="form-label"
+                    >Account Number</label
+                  >
                   <span class="text-danger">*</span>
                   <input
                     type="text"
@@ -18,7 +19,12 @@
                     id="accountNumber"
                     placeholder="Account Number"
                   />
-                  
+                  @if (
+                  addBankDetailsForm.get("accountNumber")?.invalid &&
+                  addBankDetailsForm.get("accountNumber")?.touched
+                ) {
+                  <span class="text-danger">Account Number is required</span>
+                }
                 </div>
                 
               </div>
@@ -34,9 +40,13 @@
                     id="bankName"
                     placeholder="Bank Name"
                   />
-                  
+                  @if (
+                  addBankDetailsForm.get("bankName")?.invalid &&
+                  addBankDetailsForm.get("bankName")?.touched
+                ) {
+                  <span class="text-danger">Bank Name is required</span>
+                }
                 </div>
-                
               </div>
               <div class="col-md-6">
                 <div class="mb-3">
@@ -49,7 +59,12 @@
                     id="ifscCode"
                     placeholder="IFSC Code"
                   />
-                  
+                  @if (
+                  addBankDetailsForm.get("ifscCode")?.invalid &&
+                  addBankDetailsForm.get("ifscCode")?.touched
+                ) {
+                  <span class="text-danger">IFSC Code is required</span>
+                }
                 </div>
               </div>
               <div class="col-md-6">
@@ -63,19 +78,23 @@
                     id="branch"
                     placeholder="Branch Name"
                   />
-                  
+                  @if (
+                  addBankDetailsForm.get("branch")?.invalid &&
+                  addBankDetailsForm.get("branch")?.touched
+                ) {
+                  <span class="text-danger">Branch Name is required</span>
+                }
                 </div>
               </div>
               <div class="col-md-12 mt-3">
-                  <button
-                    class="btn btn-danger w-100 fw-bolder"
-                    [disabled]="addBankDetailsForm.invalid"
-                    (click)="updateBankDetails()"
-                  >
-                    Add Bank Details
-                  </button>
-                </div>
-              
+                <button
+                  class="btn btn-danger w-100 fw-bolder"
+                  [disabled]="addBankDetailsForm.invalid"
+                  (click)="updateBankDetails()"
+                >
+                  Add Bank Details
+                </button>
+              </div>
             </div>
           </form>
         </div>
@@ -83,4 +102,3 @@
     </div>
   </div>
 </div>
-
