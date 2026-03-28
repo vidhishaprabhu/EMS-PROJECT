@@ -1,4 +1,5 @@
 const Admin = require("../models/Admin");
+const Employee=require("../models/Employee")
 const bcrypt = require("bcrypt");
 const jwt=require('jsonwebtoken')
 exports.createAdmin = async (req, res) => {
@@ -63,3 +64,25 @@ exports.changePasswordAdmin = async (req, res) => {
     return res.status(500).json({ message: "Internal server error" });
   }
 };
+
+exports.addBankDetails=async(req,res)=>{
+  try{
+    const employeeId=req.params.id;
+    const { accountNumber, bankName, ifscCode, branch } = req.body;
+    const employee=await Employee.findById(employeeId)
+    if(!employee){
+      return res.status(404).json({message:'Employee not found'});
+    }
+    employee.bankDetails={
+      accountNumber:accountNumber,
+      bankName:bankName,
+      ifscCode:ifscCode,
+      branch:branch
+    }
+    employee.save()
+    return res.status(200).json({message:'Bank details added successfully',employee:employee})
+  }
+  catch(error){
+    return res.status(500).json({ message: "Internal server error" });
+  }
+}

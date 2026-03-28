@@ -22,9 +22,20 @@ const salarySchema=mongoose.Schema({
     type:Number,
     required:true
   },
+  incomeTax: {
+    type: Number,
+    default: 0
+  },
+  pf: {
+    type: Number,
+    default: 0
+  },
+  professionalTax: {
+    type: Number,
+    default: 0
+  },
   total:{
     type:Number,
-    required:true
   }
 },
 { 

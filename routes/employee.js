@@ -1,11 +1,10 @@
 const express=require('express');
 const router=express();
-const {createEmployee,addBankDetails,login,getEmployee,getEmployeeInfo,getEmployeeById,changePasswordEmployee,forgetPassword,updateEmployee,deleteEmployee}=require('../controllers/employee')
+const {createEmployee,login,getEmployee,getEmployeeInfo,getEmployeeById,changePasswordEmployee,forgetPassword,updateEmployee,deleteEmployee}=require('../controllers/employee')
 const {verifyToken}=require('../middleware/authMiddleware')
 const {checkRole}=require('../middleware/roleMiddleware')
 
 router.post('/',verifyToken,checkRole('admin'),createEmployee)
-router.post('/add-bank-details',verifyToken,checkRole('admin'),addBankDetails)
 router.post('/login-admin-employee',login)
 router.get('/',verifyToken,checkRole('admin'),getEmployee)
 router.get('/profile',verifyToken,checkRole('employee'),getEmployeeInfo)

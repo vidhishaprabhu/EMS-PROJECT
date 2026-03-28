@@ -2,19 +2,43 @@ const Salary = require("../models/Salary");
 
 exports.createSalary = async (req, res) => {
   try {
-    const { employee, basic, bonus, department, deduction, total } = req.body;
-    if (!employee || !basic || !bonus || !department || !deduction || !total) {
-      return req.status(400).json({ message: "All fields are required" });
+    const { employee, basic, bonus, department, deduction} = req.body;
+    if (!employee || !basic || !bonus || !department || !deduction) {
+      return res.status(400).json({ message: "All fields are required" });
     } else {
+      const pf = basic * 0.12;
+
+    let professionalTax = 0;
+    if (basic > 15000) {
+      professionalTax = 200;
+    }
+
+    let incomeTax = 0;
+
+    if (basic <= 25000) {
+      incomeTax = 0;
+    } else if (basic <= 50000) {
+      incomeTax = basic * 0.10;
+    } else {
+      incomeTax = basic * 0.20;
+    }
+
+    const total =
+      basic +
+      bonus -
+      (deduction + pf + professionalTax + incomeTax);
       const salary = new Salary({
         employee: employee,
         basic: basic,
         bonus: bonus,
         department:department,
         deduction: deduction,
+        pf:pf,
+        professionalTax: professionalTax,
+        incomeTax:incomeTax,
         total: total,
       });
-      salary.save();
+      await salary.save();
       return res
         .status(200)
         .json({ message: "Salary created successfully", salary: salary });
@@ -41,6 +65,7 @@ exports.getSalaryInfo = async (req, res) => {
   try {
     // console.log("hgkghhhhhhh")
     const employeeId=req.user.id
+    console.log('Employee ID from token:', employeeId); 
     const now = new Date();
 
     const firstDayOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
@@ -53,11 +78,12 @@ exports.getSalaryInfo = async (req, res) => {
     const salary = await Salary.find({
       employee: employeeId,
       createdAt: {
-        $gte: firstDayOfMonth,
-        $lt: firstDayOfNextMonth
-      }
-    });
-   
+    $gte: firstDayOfMonth,
+    $lt: firstDayOfNextMonth
+  }
+
+    })
+   console.log('Salary found:', salary);
     if (!salary || salary.length === 0) {
       return res.status(404).json({ message: "Salary not found" });
     } else {
